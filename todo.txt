@@ -1,29 +1,34 @@
                                    -----TODO APP-----
 *Data structure:
-[
+//Array of objects
+[                         
   {
-    title:"t1",
-    todoList:
+    title:"t1",            //string
+    todoList:              //array of objects
     [{
-       list:list1,
-       isDone:false
+       todo:"todo",        //string
+       isDone:false,       //boolean  
+       date:date           //object
       },
      {
-       list:list2,
-       isDone:false
+       todo:"todo",
+       isDone:false,
+       date:date
       }]
-   }
+   },
 
   {
     title:"t2",
     todoList:
     [{
-       list:list1,
-       isDone:false
+       todo:"todo",
+       isDone:false,
+       date:date
       },
      {
-       list:list2,
-       isDone:false
+       todo:"todo",
+       isDone:false,
+       date:date
       }]
    }   
 ]
