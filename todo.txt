@@ -1,0 +1,45 @@
+                                   -----TODO APP-----
+
+1=>setup the environment 
+tree
+|
+|-lib
+|  |-app.js   
+|-server.js
+|-test
+|  |-appTest.js
+|-todo.txt
+|-README.md
+|-public
+|  |-scripts
+|  |-img
+|  |-css 
+|  |-index.html
+|-dataBase
+   |-todoList.json 
+    
+2=>make the home page
+2.1 on home page there will be an option of adding new comment
+2.2 Allow user to add a new comment on clicking the add comment option
+2.3 every new comment should have a title and detail of to do list
+
+3=>make sure that all todo list should appear on the home page
+3.1 after submitting the new comment new comment should appear on the home page
+3.2 only the title should appear on the  home page
+3.3 allow user to see the detail todo after clicking on the particular todo title
+
+4=>provide delete option in the particular todo 
+4.1 In every todo list provide a delete option 
+4.2 allow the user to delete an item from todo list 
+4.3 after deleting the item, that item shouldn't appear in the detail of that todo
+
+5=>add a mark to show whether the work is done or pending
+5.1 allow user to add the mark on todo list in order to show whether the work is done or pending 
+5.2 the mark should appear with the title in home page
+
+6=>provide a option to delete the todo list
+6.1 add the option to delete the particular todo list 
+6.2 after deleting that todo list, that should disappear form the home page
+
+
+
