@@ -20,3 +20,12 @@ describe('GET /bad', function() {
       .expect(404, done);
   });
 });
+
+describe('PUT /', function() {
+  it('test for put request', function(done) {
+    request(app.serve.bind(app))
+      .put('/')
+      .set('Accept', '*/*')
+      .expect(400, done);
+  });
+});
