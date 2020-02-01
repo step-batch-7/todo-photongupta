@@ -1,6 +1,6 @@
                                    -----TODO APP-----
 
-1=>setup the environment 
+✅1=>setup the environment 
 tree
 |
 |-lib
@@ -17,16 +17,19 @@ tree
 |  |-index.html
 |-dataBase
    |-todoList.json 
-    
-2=>make the home page
-2.1 on home page there will be an option of adding new comment
-2.2 Allow user to add a new comment on clicking the add comment option
-2.3 every new comment should have a title and detail of to do list
 
-3=>make sure that all todo list should appear on the home page
-3.1 after submitting the new comment new comment should appear on the home page
-3.2 only the title should appear on the  home page
-3.3 allow user to see the detail todo after clicking on the particular todo title
+2=>make the home page
+2.1 on home page there will be an option of adding new todo
+2.2 Allow user to add a new todo on clicking the add option
+2.3 every new todo should have a title and detail of to do list
+
+3=>make sure that all todo list should save in json (array of objects)
+3.2 every new todo should be in the form of objects
+3.1 after adding the new todo, the todo should store in the json file 
+3.2 todo stored in the json should be in the form of array of the objects 
+3.1 after adding the new todo new todo should appear on the home page
+3.2 only the title should appear on the home page
+3.3 allow user to see the detail of todo after clicking on the particular todo title
 
 4=>provide delete option in the particular todo 
 4.1 In every todo list provide a delete option 
