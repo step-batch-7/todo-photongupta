@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="scripts/addTodo.js"></script>
+    <title>Add todo</title>
+  </head>
+  <body class="background">
+    <div class="detailPanel">
+      <div>
+        <img
+          src="img/close.png"
+          alt="close"
+          class="close"
+          onclick="location.href='index.html'"
+        /><br />
+        <h1>Add the todo</h1>
+      </div>
+      <img src="img/pen1.png" class="pen" />
+      <div class="form">
+        <form method="POST">
+          <label for="title">Title: </label>
+          <input type="text" name="title" required /><br /><br />
+          <h3 for="todoList">TodoList</h3>
+          <div class="items">
+            <textarea name="todoList" cols="50" rows="3" required></textarea
+            ><br />
+          </div>
+          <img
+            src="./img/addComment.png"
+            alt="addTodo"
+            class="addTodoIcon"
+            onclick="addItems()"
+          />
+          <img
+            src="./img/remove.png"
+            alt="removeTodo"
+            class="addTodoIcon"
+            onclick="removeItems()"
+          /><br />
+          <input type="submit" value="Add todo" class="add" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -53,16 +53,16 @@ tree
 
 2=>make the home page
 ✅2.1 make the home page with todo heading
-2.2 on home page there will be an option of adding new todo
-2.3 Allow user to add a new todo on clicking the add option
-2.4 every new todo should have a title and detail of to do list
+✅2.2 on home page there will be an option of adding new todo
+✅2.3 Allow user to add a new todo on clicking the add option
+✅.4 every new todo should have a title and detail of to do list
 
 3=>make sure that all todo list should save in json (array of objects)
-3.1 every new todo should be in the form of objects
-3.2 after adding the new todo, the todo should store in the json file 
-3.3 todo stored in the json should be in the form of array of the objects 
-3.4 after adding the new todo new todo should appear on the home page
-3.5 only the title should appear on the home page
+✅3.1 every new todo should be in the form of objects
+✅3.2 after adding the new todo, the todo should store in the json file 
+✅3.3 todo stored in the json should be in the form of array of the objects 
+✅3.4 after adding the new todo new todo should appear on the todoList page
+✅3.5 only the title should appear on the todoList page
 3.6 allow user to see the detail of todo after clicking on the particular todo title
 
 4=>provide delete option in the particular todo 

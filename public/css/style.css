@@ -1,5 +1,11 @@
 body {
   font-family: sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+  color: rgb(54, 131, 9);
 }
 
 .header {
@@ -7,4 +13,91 @@ body {
   color: rgb(54, 131, 9);
   font-size: 300%;
   background-image: linear-gradient(rgb(201, 201, 201), rgb(250, 250, 250));
+}
+
+.addTodoIcon {
+  height: 6vh;
+}
+.todoBox {
+  text-align: center;
+  display: inline-block;
+  margin-top: 25%;
+}
+
+.option {
+  display: flex;
+  background-image: linear-gradient(rgb(220, 220, 220), rgb(250, 250, 250));
+  border-radius: 20px;
+}
+
+.form {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+.add {
+  border-radius: 5px;
+  height: 5vh;
+  width: 10vw;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 2vh;
+}
+
+.items {
+  height: 40vh;
+  overflow: scroll;
+  margin-bottom: 5vh;
+}
+
+.close {
+  height: 5vh;
+  margin-top: 1%;
+  margin-left: 90%;
+}
+
+.option:hover {
+  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
+}
+.add:hover {
+  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
+  box-shadow: 5px 5px 5px rgb(150, 150, 150);
+}
+
+.pen {
+  position: absolute;
+  height: 60vh;
+  left: 5%;
+}
+
+.background {
+  background-image: repeating-radial-gradient(
+    rgb(250, 250, 250),
+    rgb(203, 236, 217)
+  );
+}
+
+.todo {
+  height: 75vh;
+  overflow: scroll;
+  text-align: center;
+  display: inline-block;
+}
+
+.showTitle {
+  border: 1px solid rgb(100, 100, 100);
+  box-shadow: 2px 2px 5px rgb(150, 150, 150);
+  border-radius: 20px;
+  font-size: 20px;
+  height: 6vh;
+  width: 40vw;
+}
+
+.showTitle:hover {
+  background-image: linear-gradient(rgb(185, 243, 162), rgb(29, 165, 69));
+  box-shadow: 5px 5px 5px rgb(150, 150, 150);
 }
