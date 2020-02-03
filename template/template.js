@@ -2,7 +2,6 @@ const titles = `
 <div class="showTitle" id="__id__" onclick="showDetail(event)">
   __title__
 </div><br/>
-
 `;
 
 const allTodo = `
@@ -26,7 +25,7 @@ const allTodo = `
     <div class="todo">
       __todo__
     </div>
-    <div class="detailPanel"></div>
+    <div class="todoDetail"></div>
   </body>
 </html>
 `;
