@@ -4,7 +4,7 @@ const titles = `
 </div><br/>
 `;
 
-const allTodo = `
+const todoList = `
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,10 +23,10 @@ const allTodo = `
       <h1>Todo list</h1>
     </div>
     <div class="todo">
-      __todo__
+      __todoList__
     </div>
     <div class="todoDetail"></div>
   </body>
 </html>
 `;
-module.exports = {titles, allTodo};
+module.exports = {titles, todoList};
