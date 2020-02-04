@@ -1,3 +1,9 @@
+const items = `
+<div class="showItems" >
+<p class="tick"><input type="checkbox" name="isDone" id="" /> __item__</p>
+</div><br/>
+`;
+
 const addItems = function() {
   const form = document.querySelector('.items');
   const textarea = document.createElement('textarea');
@@ -16,6 +22,11 @@ const removeItems = function() {
   form.removeChild(form.lastChild);
 };
 
+const toggleStatus = function() {
+  const id = event.target.getAttribute('id');
+  console.log(id);
+};
+
 const showDetail = function() {
   const id = event.target.getAttribute('id');
   const detail = document.querySelector('.todoDetail');
@@ -24,7 +35,18 @@ const showDetail = function() {
   xhr.onload = function() {
     let content = JSON.parse(xhr.responseText);
     content = content.filter(todo => todo.id == id).flat();
-    console.log(content);
+    const todoItems = content[0].todoItems
+      .map(task => items.replace('__item__', task.item))
+      .join('');
+    detail.innerHTML = `
+    <div class="todo">
+      <h1>${content[0].title}</h1>
+      <form method="POST">
+      ${todoItems}
+        <button type="submit" onclick="toggleStatus()">save</button>
+    </form>
+    </div>
+    `;
   };
   xhr.open('GET', '/todoList.json', true);
   xhr.send();

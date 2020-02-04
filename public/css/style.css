@@ -91,7 +91,18 @@ h1 {
 .showTitle {
   border: 1px solid rgb(100, 100, 100);
   box-shadow: 2px 2px 5px rgb(150, 150, 150);
-  border-radius: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  height: 6vh;
+  width: 40vw;
+}
+
+.showItems {
+  display: flex;
+  justify-content: left;
+  border: 1px solid black;
+  box-shadow: 2px 2px 5px rgb(150, 150, 150);
+  border-radius: 10px;
   font-size: 20px;
   height: 6vh;
   width: 40vw;
@@ -112,5 +123,9 @@ h1 {
   transition: 1s;
   height: 100vh;
   margin-top: -100vh;
-  background-color: gray;
+  background-color: rgb(220, 220, 220);
+}
+
+.tick {
+  margin-top: 1vh;
 }

@@ -3,32 +3,39 @@
 //Array of objects
 [                         
   {
+    id:"id",
     title:"t1",            //string
     todoList:              //array of objects
+
     [{
        todo:"todo",        //string
        isDone:false,       //boolean  
-       date:date           //object
+       date:date,           //object
+       id:"id"             
       },
      {
        todo:"todo",
        isDone:false,
-       date:date
+       date:date,
+       id:"id"
       }]
    },
 
   {
+    id:"id", 
     title:"t2",
     todoList:
     [{
        todo:"todo",
        isDone:false,
-       date:date
+       date:date,
+       id:"id"
       },
      {
        todo:"todo",
        isDone:false,
-       date:date
+       date:date,
+       id:"id"
       }]
    }   
 ]
@@ -63,16 +70,17 @@ tree
 ✅3.3 todo stored in the json should be in the form of array of the objects 
 ✅3.4 after adding the new todo new todo should appear on the todoList page
 ✅3.5 only the title should appear on the todoList page
-3.6 allow user to see the detail of todo after clicking on the particular todo title
+✅3.6 allow user to see the detail of todo after clicking on the particular todo title
 
-4=>provide delete option in the particular todo 
-4.1 In every todo list provide a delete option 
-4.2 allow the user to delete an item from todo list 
-4.3 after deleting the item, that item shouldn't appear in the detail of that todo
 
-5=>add a mark to show whether the work is done or pending
-5.1 allow user to add the mark on todo list in order to show whether the work is done or pending 
-5.2 the mark should appear with the title in home page
+4=>add a mark to show whether the work is done or pending
+✅4.1 allow user to add the mark on todo list in order to show whether the work is done or pending 
+✅4.2 the mark should appear with the item
+
+5=>provide delete option in the particular todo 
+5.1 In every todo list provide a delete option 
+5.2 allow the user to delete an item from todo list 
+5.3 after deleting the item, that item shouldn't appear in the detail of that todo
 
 6=>provide a option to delete the todo list
 6.1 add the option to delete the particular todo list 
