@@ -1,19 +1,12 @@
-const items = `
-<div class="showItems" >
-  <p class="tick">
-    <input type="checkbox" name="isDone" __checked__ id="__id__" />
-    __item__
-  </p> 
-</div><br/>
-`;
-
-const allReplace = function(content, replacement) {
-  let newContent = content;
-  for (const target in replacement) {
-    const replacer = replacement[target];
-    newContent = newContent.split(target).join(replacer);
-  }
-  return newContent;
+const itemsInHtml = function(task) {
+  const {item, id, isDone} = task;
+  const isChecked = isDone ? 'checked' : '';
+  return `
+   <div class="showItems" >
+     <p class="tick">
+       <input type="checkbox" name="isDone" ${isChecked} id="${id}" />${item}
+     </p> 
+   </div><br/>`;
 };
 
 const addItems = function() {
@@ -62,16 +55,8 @@ const showDetail = function() {
 
 const handleResponse = function(resText, id, detail) {
   resText = resText.filter(todo => todo.id == id).flat();
-  console.log(resText[0]);
   const todoItems = resText[0].todoItems
-    .map(task => {
-      const checked = task.isDone ? 'checked' : '';
-      return allReplace(items, {
-        __item__: task.item,
-        __id__: task.id,
-        __checked__: checked
-      });
-    })
+    .map(task => itemsInHtml(task))
     .join('');
   detail.innerHTML = `
     <div class="todo">
