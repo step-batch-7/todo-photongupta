@@ -36,18 +36,20 @@ const removeItems = function() {
 
 const toggleStatus = function() {
   let checkboxes = document.getElementsByTagName('input');
+  let todoId = document.querySelector('.todoDetail').getAttribute('id');
   checkedBoxes = [...checkboxes].filter(checkbox => checkbox.checked);
   ids = checkedBoxes.map(box => box.getAttribute('id'));
   let xhr = new XMLHttpRequest();
   xhr.open('POST', '/showList.html', true);
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  xhr.send(`ids=${ids}`);
+  xhr.send(`ids=${ids}&todoId=${todoId}`);
 };
 
 const showDetail = function() {
   const id = event.target.getAttribute('id');
   const detail = document.querySelector('.todoDetail');
   detail.style['margin-top'] = '0vh';
+  detail.id = id;
   let xhr = new XMLHttpRequest();
   xhr.onload = function() {
     let responseText = JSON.parse(xhr.responseText);
