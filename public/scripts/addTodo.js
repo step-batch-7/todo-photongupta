@@ -40,6 +40,7 @@ const toggleStatus = function() {
   checkedBoxes = [...checkboxes].filter(checkbox => checkbox.checked);
   ids = checkedBoxes.map(box => box.getAttribute('id'));
   let xhr = new XMLHttpRequest();
+  xhr.onload = function() {};
   xhr.open('POST', '/showList.html', true);
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhr.send(`ids=${ids}&todoId=${todoId}`);
@@ -61,6 +62,7 @@ const showDetail = function() {
 
 const handleResponse = function(resText, id, detail) {
   resText = resText.filter(todo => todo.id == id).flat();
+  console.log(resText[0]);
   const todoItems = resText[0].todoItems
     .map(task => {
       const checked = task.isDone ? 'checked' : '';
