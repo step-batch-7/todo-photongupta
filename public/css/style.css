@@ -100,7 +100,6 @@ h1 {
 .showItems {
   display: flex;
   justify-content: left;
-  border: 1px solid black;
   box-shadow: 2px 2px 5px rgb(150, 150, 150);
   border-radius: 10px;
   font-size: 20px;
@@ -118,8 +117,8 @@ h1 {
   z-index: 2;
   position: absolute;
   top: 0;
-  left: 25%;
-  width: 60vw;
+  left: 10%;
+  width: 80vw;
   transition: 1s;
   height: 100vh;
   margin-top: -100vh;
@@ -128,4 +127,9 @@ h1 {
 
 .tick {
   margin-top: 1vh;
+}
+
+.titleHeading {
+  color: black;
+  border-bottom: 1px solid black;
 }

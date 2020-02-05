@@ -9,6 +9,29 @@ const itemsInHtml = function(task) {
    </div><br/>`;
 };
 
+const getXmlHttpRequest = function(url, callback, args) {
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    if (this.status === 200) {
+      callback(JSON.parse(this.responseText), args);
+    }
+  };
+  xhr.open('GET', url, true);
+  xhr.send();
+};
+
+const postXmlHttpRequest = function(url, body, callback, args) {
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    if (this.status === 200) {
+      callback(JSON.parse(this.responseText), args);
+    }
+  };
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.send(body);
+};
+
 const addItems = function() {
   const form = document.querySelector('.items');
   const textarea = document.createElement('textarea');
@@ -18,6 +41,7 @@ const addItems = function() {
   textarea.name = 'todoItem';
   form.appendChild(textarea);
   const br = document.createElement('br');
+
   form.appendChild(br);
 };
 
@@ -27,16 +51,18 @@ const removeItems = function() {
   form.removeChild(form.lastChild);
 };
 
-const toggleStatus = function() {
+const updateIsDoneStatus = function() {
   let checkboxes = document.getElementsByTagName('input');
   let todoId = document.querySelector('.todoDetail').getAttribute('id');
   checkedBoxes = [...checkboxes].filter(checkbox => checkbox.checked);
   ids = checkedBoxes.map(box => box.getAttribute('id'));
-  let xhr = new XMLHttpRequest();
-  xhr.onload = function() {};
-  xhr.open('POST', '/showList.html', true);
-  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  xhr.send(`ids=${ids}&todoId=${todoId}`);
+  const body = `ids=${ids}&todoId=${todoId}`;
+  postXmlHttpRequest('/showList.html', body, removeDetail);
+};
+
+const removeDetail = function() {
+  const detail = document.querySelector('.todoDetail');
+  detail.style['margin-top'] = '-100vh';
 };
 
 const showDetail = function() {
@@ -44,24 +70,16 @@ const showDetail = function() {
   const detail = document.querySelector('.todoDetail');
   detail.style['margin-top'] = '0vh';
   detail.id = id;
-  let xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    let responseText = JSON.parse(xhr.responseText);
-    handleResponse(responseText, id, detail);
-  };
-  xhr.open('GET', '/todoList.json', true);
-  xhr.send();
+  getXmlHttpRequest('/todoList.json', showTodoItems, {id, detail});
 };
 
-const handleResponse = function(resText, id, detail) {
-  resText = resText.filter(todo => todo.id == id).flat();
-  const todoItems = resText[0].todoItems
-    .map(task => itemsInHtml(task))
-    .join('');
-  detail.innerHTML = `
+const showTodoItems = function(resText, args) {
+  resText = resText.filter(todo => todo.id == args.id).flat();
+  const todoItems = resText[0].todoItems.map(task => itemsInHtml(task));
+  args.detail.innerHTML = `
     <div class="todo">
-      <h1>${resText[0].title}</h1>${todoItems}
-      <button type="submit" onclick="toggleStatus()">save</button>
+      <h1 class="titleHeading">${resText[0].title}</h1>${todoItems.join('')}
+      <button type="submit" onclick= updateIsDoneStatus()">save</button>
     </div>
     `;
 };
