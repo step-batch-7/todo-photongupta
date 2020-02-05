@@ -77,14 +77,21 @@ tree
 ✅4.1 allow user to add the mark on todo list in order to show whether the work is done or pending 
 ✅4.2 the mark should appear with the item
 
-5=>provide delete option in the particular todo 
-5.1 In every todo list provide a delete option 
-5.2 allow the user to delete an item from todo list 
-5.3 after deleting the item, that item shouldn't appear in the detail of that todo
+5=>provide delete option in the particular todo item
+✅5.1 In every todo item provide a delete option 
+✅5.2 allow the user to delete an item from todo
+✅5.3 after deleting the item, that item shouldn't appear in the detail of that todo
 
-6=>provide a option to delete the todo list
-6.1 add the option to delete the particular todo list 
-6.2 after deleting that todo list, that should disappear form the home page
+6=>provide a option to delete the todo 
+6.1 add the option to delete the particular todo  
+6.2 after deleting that todo , todo shouldn't appear in the todoList
+
+7=> provide an option to add the items in the existing todo
+
+8=> make a function to generate id for todo and todo items
+
+
+
 
 
 
