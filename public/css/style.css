@@ -54,6 +54,10 @@ h1 {
   margin-bottom: 5vh;
 }
 
+.editItem {
+  margin-top: 5%;
+}
+
 .close {
   height: 5vh;
   margin-top: 1%;
@@ -99,7 +103,8 @@ h1 {
 
 .showItems {
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
+
   box-shadow: 2px 2px 5px rgb(150, 150, 150);
   border-radius: 10px;
   font-size: 20px;
@@ -132,4 +137,10 @@ h1 {
 .titleHeading {
   color: black;
   border-bottom: 1px solid black;
+}
+
+.delete {
+  height: 60%;
+  widows: 60%;
+  margin-top: 3%;
 }
