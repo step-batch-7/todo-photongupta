@@ -1,16 +1,3 @@
-const titles = `
-<div class="showTitle">
- <p class="title">__title__</p>
-  <div class="icons">
-   <span ><img src="../img/deleteIcon.png" class="deleteTodo" onclick="deleteTodo()" id="__id__"/>
-    <img src="../img/showDetail.png" class="detailIcon" onclick="showDetail(event)" id="__id__"/>
-   </span>
-   <p class="leftTime">__left__</p>
-  </div>
-</div>
-<br/>
-`;
-
 const itemsInHtml = function(task) {
   const {item, id, isDone} = task;
   const isChecked = isDone ? 'checked' : '';
@@ -18,21 +5,25 @@ const itemsInHtml = function(task) {
    <div class="showItems">
        <input type="checkbox" name="isDone" class="TickItem" ${isChecked} id="${id}" />
        <p>${item}</p>
-       <img src="../img/deleteIcon.png" class="delete" onclick="deleteItem()" id="${id}"/>
+       <img src="../img/minus.png" class="delete" onclick="deleteItem()" id="${id}"/>
    </div><br/>`;
+};
+
+const addChild = function(parent, eventListener) {
+  const parentElement = document.querySelector(parent);
+  const input = document.createElement('input');
+  input.classList = 'input';
+  input.required = true;
+  input.name = 'todoItem';
+  input.addEventListener('keydown', eventListener);
+  parentElement.appendChild(input);
+  const br = document.createElement('br');
+  parentElement.appendChild(br);
 };
 
 const addItems = function(event) {
   if (event.keyCode == 13 || event.target.alt == 'addTodo') {
-    const form = document.querySelector('.items');
-    const input = document.createElement('input');
-    input.classList = 'input';
-    input.required = true;
-    input.name = 'todoItem';
-    input.addEventListener('keydown', addItems);
-    form.appendChild(input);
-    const br = document.createElement('br');
-    form.appendChild(br);
+    addChild('.items', addItems);
   }
 };
 
@@ -89,6 +80,7 @@ const deleteItem = function() {
   const body = `itemId=${ItemId}&todoId=${todoId}`;
   postXmlHttpRequest('/deleteItem', body, updateDetail, {todoId});
 };
+
 const updateDetail = function({todoId}) {
   getXmlHttpRequest('/todoList.json', showTodoItems, {todoId});
 };
@@ -124,16 +116,7 @@ const modifyItemList = function() {
 };
 
 const modifyItems = function(event) {
-  console.log('hi');
-  const form = document.querySelector('.item');
-  const input = document.createElement('input');
-  input.classList = 'input';
-  input.required = true;
-  input.name = 'todoItem';
-  input.addEventListener('keydown', modifyItemList);
-  form.appendChild(input);
-  const br = document.createElement('br');
-  form.appendChild(br);
+  addChild('.todoDetail', modifyItemList);
 };
 
 const showTodoItems = function(resText, args) {
@@ -144,11 +127,14 @@ const showTodoItems = function(resText, args) {
     .filter(todo => todo.id == args.todoId)
     .flat();
   const todoItems = resText[0].todoItems.map(task => itemsInHtml(task));
-  detail.innerHTML = `
+  detail.innerHTML = todoDetailInHtml(resText, todoItems);
+};
+const todoDetailInHtml = function(resText, todoItems) {
+  return `
     <div class="item">
       <h1 class="titleHeading">${resText[0].title}</h1>${todoItems.join('')}
-      <img src="../img/addComment.png" class="detailIcon" onclick="modifyItems(event)" id="__id__"/>
-      <button type="submit" class="add" onclick="updateIsDoneStatus()">Save changes</button>
-    </div>
+    </div><br>
+    <img src="../img/addComment.png" class="detailIcon" onclick="modifyItems(event)" id="__id__"/>
+    <button type="submit" class="add" onclick="updateIsDoneStatus()">Save changes</button>
     `;
 };

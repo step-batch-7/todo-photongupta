@@ -3,7 +3,7 @@ body {
   text-align: center;
   background-color: white;
   /* filter: invert();
-    background-color: black; */
+  background-color: black; */
 }
 
 h1 {
@@ -134,6 +134,8 @@ h1 {
   font-size: 20px;
   height: 6vh;
   width: 40vw;
+  overflow: scroll;
+  text-align: left;
 }
 
 .showTitle:hover {
@@ -166,7 +168,8 @@ h1 {
 .delete {
   height: 75%;
   width: 8%;
-  margin-top: 3%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .icons {
