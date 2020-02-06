@@ -1,8 +1,14 @@
 const titles = `
 <div class="showTitle">
- <p class="title">__title__</p><div class="icons"><span ><img src="../img/deleteIcon.png" class="deleteTodo" onclick="deleteTodo()" id="__id__"/>
-  <img src="../img/showDetail.png" class="detailIcon" onclick="showDetail(event)" id="__id__"/></span>items left - __left__</div>
-</div><br/>
+ <p class="title">__title__</p>
+  <div class="icons">
+   <span ><img src="../img/deleteIcon.png" class="deleteTodo" onclick="deleteTodo()" id="__id__"/>
+    <img src="../img/showDetail.png" class="detailIcon" onclick="showDetail(event)" id="__id__"/>
+   </span>
+   <p class="leftTime">__left__</p>
+  </div>
+</div>
+<br/>
 `;
 
 const todoList = `
