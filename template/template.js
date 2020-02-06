@@ -22,7 +22,7 @@ const todoList = `
   <body id="todo">
     <div >
       <img
-        src="img/close.png"
+        src="img/home.png"
         alt="close"
         class="close"
         onclick="location.href='index.html'"

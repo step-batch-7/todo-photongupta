@@ -115,7 +115,7 @@ const modifyItemList = function() {
   }
 };
 
-const modifyItems = function(event) {
+const modifyItems = function() {
   addChild('.todoDetail', modifyItemList);
 };
 
@@ -131,10 +131,11 @@ const showTodoItems = function(resText, args) {
 };
 const todoDetailInHtml = function(resText, todoItems) {
   return `
+  <h1 class="titleHeading">${resText[0].title}</h1>
     <div class="item">
-      <h1 class="titleHeading">${resText[0].title}</h1>${todoItems.join('')}
+    ${todoItems.join('')}
     </div><br>
-    <img src="../img/addComment.png" class="detailIcon" onclick="modifyItems(event)" id="__id__"/>
+    <img src="../img/plus.png" class="detailIcon" onclick="modifyItems(event)" id="__id__"/>
     <button type="submit" class="add" onclick="updateIsDoneStatus()">Save changes</button>
     `;
 };
