@@ -21,18 +21,24 @@
       <div class="form">
         <form method="POST">
           <label for="title">Title: </label>
-          <input type="text" name="title" required /><br /><br />
+          <input
+            type="text"
+            name="title"
+            required
+            class="input"
+          /><br /><br />
           <h3 for="todoItems">TodoItems</h3>
           <div class="items">
-            <textarea name="todoItem" cols="50" rows="3" required></textarea
+            <input
+              name="todoItem"
+              class="input"
+              required
+              type="text"
+              onkeydown="addItems(event)"
+            ></input
             ><br />
           </div>
-          <img
-            src="./img/addComment.png"
-            alt="addTodo"
-            class="addTodoIcon"
-            onclick="addItems()"
-          />
+          
           <img
             src="./img/remove.png"
             alt="removeTodo"

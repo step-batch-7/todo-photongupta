@@ -1,6 +1,7 @@
 const titles = `
-<div class="showTitle" id="__id__" onclick="showDetail(event)">
-  __title__
+<div class="showTitle">
+ <p class="title">__title__</p><div class="icons"><span ><img src="../img/deleteIcon.png" class="deleteTodo" onclick="deleteTodo()" id="__id__"/>
+  <img src="../img/showDetail.png" class="detailIcon" onclick="showDetail(event)" id="__id__"/></span>items left - __left__</div>
 </div><br/>
 `;
 
@@ -9,11 +10,11 @@ const todoList = `
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="scripts/addTodo.js"></script>
+    <script src="./scripts/addTodo.js"></script>
     <title>TodoList</title>
   </head>
-  <body>
-    <div>
+  <body id="todo">
+    <div >
       <img
         src="img/close.png"
         alt="close"

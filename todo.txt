@@ -83,12 +83,14 @@ tree
 ✅5.3 after deleting the item, that item shouldn't appear in the detail of that todo
 
 6=>provide a option to delete the todo 
-6.1 add the option to delete the particular todo  
-6.2 after deleting that todo , todo shouldn't appear in the todoList
+✅6.1 add the option to delete the particular todo  
+✅6.2 after deleting that todo , todo shouldn't appear in the todoList
 
-7=> provide an option to add the items in the existing todo
+✅7=>add na option which shows how many items are left to complete
 
-8=> make a function to generate id for todo and todo items
+8=> provide an option to add the items in the existing todo
+
+9=> make a function to generate id for todo and todo items
 
 
 
