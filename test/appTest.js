@@ -7,7 +7,6 @@ describe('GET /', function() {
       .get('/')
       .set('Accept', '*/*')
       .expect('Content-Type', 'text/html')
-      .expect('Content-Length', '649')
       .expect(200, done);
   });
 });
@@ -21,8 +20,18 @@ describe('GET /bad', function() {
   });
 });
 
+describe('GET /showList.html', function() {
+  it('test for get request with file path /showList.html', function(done) {
+    request(app.serve.bind(app))
+      .get('/showList.html')
+      .set('Accept', '*/*')
+      .expect('Content-Type', 'text/html')
+      .expect(200, done);
+  });
+});
+
 describe('POST /addTodo.html', function() {
-  it('test  for post request with file not existing', function(done) {
+  it('test  for post request with url /addTodo.html', function(done) {
     request(app.serve.bind(app))
       .post('/addTodo.html')
       .set('Accept', '*/*')
@@ -32,31 +41,31 @@ describe('POST /addTodo.html', function() {
 });
 
 describe('POST /addItem', function() {
-  it('test  for post request with file not existing', function(done) {
+  it('test  for post request with url /addItem', function(done) {
     request(app.serve.bind(app))
       .post('/addItem')
       .set('Accept', '*/*')
-      .expect('Location', '/showList')
+      .expect('Location', '/showList.html')
       .expect(302, done);
   });
 });
 
-describe('POST /deleteTodo.html', function() {
-  it('test  for post request with file not existing', function(done) {
+describe('POST /deleteTodo', function() {
+  it('test  for post request with url /deleteTodo', function(done) {
     request(app.serve.bind(app))
-      .post('/deleteTodo.html')
+      .post('/deleteTodo')
       .set('Accept', '*/*')
-      .expect('Location', '/showList')
+      .expect('Location', '/showList.html')
       .expect(302, done);
   });
 });
 
 describe('POST /deleteItem', function() {
-  it('test  for post request with file not existing', function(done) {
+  it('test  for post request with url /deleteItem', function(done) {
     request(app.serve.bind(app))
       .post('/deleteItem')
       .set('Accept', '*/*')
-      .expect('Location', '/showList')
+      .expect('Location', '/showList.html')
       .expect(302, done);
   });
 });

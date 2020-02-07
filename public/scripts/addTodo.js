@@ -61,7 +61,7 @@ const deleteTodo = function() {
   const todoId = event.target.getAttribute('id');
   const body = `todoId=${todoId}`;
   postXmlHttpRequest('/deleteTodo', body, requestForScreenContent, {
-    url: '/showList',
+    url: '/showList.html',
     callback: renderScreen
   });
 };
@@ -95,7 +95,7 @@ const updateIsDoneStatus = function() {
 };
 
 const removeDetail = function() {
-  getXmlHttpRequest('/showList', renderScreen);
+  getXmlHttpRequest('/showList.html', renderScreen);
   const detail = document.querySelector('.todoDetail');
   detail.style['margin-top'] = '-100vh';
 };
