@@ -41,6 +41,26 @@ describe('POST /addItem', function() {
   });
 });
 
+describe('POST /deleteTodo.html', function() {
+  it('test  for post request with file not existing', function(done) {
+    request(app.serve.bind(app))
+      .post('/deleteTodo.html')
+      .set('Accept', '*/*')
+      .expect('Location', '/showList')
+      .expect(302, done);
+  });
+});
+
+describe('POST /deleteItem', function() {
+  it('test  for post request with file not existing', function(done) {
+    request(app.serve.bind(app))
+      .post('/deleteItem')
+      .set('Accept', '*/*')
+      .expect('Location', '/showList')
+      .expect(302, done);
+  });
+});
+
 describe('POST /bad', function() {
   it('test  for post request with file not existing', function(done) {
     request(app.serve.bind(app))
