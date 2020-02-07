@@ -8,14 +8,14 @@ const content = JSON.stringify([
     title: 'complete Todo',
     id: 124,
     todoItems: [
-      {item: 'write Todo', id: 1, isDone: false},
+      {item: 'write Todo', id: 1, isDone: true},
       {item: 'write Todo', id: 2, isDone: false}
     ]
   },
   {
     title: 'shopping',
     id: 123,
-    todoItems: [{item: 'buy shoe', id: 1, isDone: false}]
+    todoItems: [{item: 'buy shoe', id: 1, isDone: true}]
   }
 ]);
 fs.writeFileSync(fakeDataBase, content, 'utf8');
@@ -60,17 +60,6 @@ describe('GET /todoList.json', function() {
   });
 });
 
-describe('POST /updateStatus', function() {
-  it('test  for post request with url /updateStatus', function(done) {
-    request(app.serve.bind(app))
-      .post('/updateStatus')
-      .set('Accept', '*/*')
-      .send(stringify({todoId: 124, ids: ['1, 2']}))
-      .expect('Location', '/showList.html')
-      .expect(302, done);
-  });
-});
-
 describe('POST /addTodo.html', function() {
   it('test  for post request with url /addTodo.html', function(done) {
     request(app.serve.bind(app))
@@ -88,6 +77,17 @@ describe('POST /addItem', function() {
       .post('/addItem')
       .send(stringify({todoId: 123, item: 'drink juice'}))
       .set('Accept', '*/*')
+      .expect('Location', '/showList.html')
+      .expect(302, done);
+  });
+});
+
+describe('POST /updateStatus', function() {
+  it('test  for post request with url /updateStatus', function(done) {
+    request(app.serve.bind(app))
+      .post('/updateStatus')
+      .set('Accept', '*/*')
+      .send(stringify({todoId: 124, ids: '1, 2'}))
       .expect('Location', '/showList.html')
       .expect(302, done);
   });
