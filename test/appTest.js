@@ -7,15 +7,24 @@ describe('GET /', function() {
       .get('/')
       .set('Accept', '*/*')
       .expect('Content-Type', 'text/html')
-      .expect('Content-Length', '216')
+      .expect('Content-Length', '649')
       .expect(200, done);
   });
 });
 
 describe('GET /bad', function() {
-  it('test  for post request with file not existing', function(done) {
+  it('test  for get request with file not existing', function(done) {
     request(app.serve.bind(app))
       .get('/bad')
+      .set('Accept', '*/*')
+      .expect(404, done);
+  });
+});
+
+describe('POST /bad', function() {
+  it('test  for post request with file not existing', function(done) {
+    request(app.serve.bind(app))
+      .post('/bad')
       .set('Accept', '*/*')
       .expect(404, done);
   });

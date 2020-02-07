@@ -92,6 +92,8 @@ tree
 
 9=> make a function to generate id for todo and todo items
 
+10=> ask for confirmation for deleting items and todoList
+
 
 
 
