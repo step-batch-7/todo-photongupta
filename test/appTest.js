@@ -7,7 +7,10 @@ const content = JSON.stringify([
   {
     title: 'complete Todo',
     id: 124,
-    todoItems: [{item: 'wite Todo', id: 1, isDone: false}]
+    todoItems: [
+      {item: 'write Todo', id: 1, isDone: false},
+      {item: 'write Todo', id: 2, isDone: false}
+    ]
   },
   {
     title: 'shopping',
@@ -57,6 +60,17 @@ describe('GET /todoList.json', function() {
   });
 });
 
+describe('POST /updateStatus', function() {
+  it('test  for post request with url /updateStatus', function(done) {
+    request(app.serve.bind(app))
+      .post('/updateStatus')
+      .set('Accept', '*/*')
+      .send(stringify({todoId: 124, ids: ['1, 2']}))
+      .expect('Location', '/showList.html')
+      .expect(302, done);
+  });
+});
+
 describe('POST /addTodo.html', function() {
   it('test  for post request with url /addTodo.html', function(done) {
     request(app.serve.bind(app))
@@ -99,7 +113,6 @@ describe('POST /deleteItem', function() {
       .expect('Location', '/showList.html')
       .expect(302, done);
   });
-  after(() => fs.unlinkSync(fakeDataBase));
 });
 
 describe('POST /bad', function() {
@@ -119,3 +132,5 @@ describe('PUT /', function() {
       .expect(400, done);
   });
 });
+
+after(() => fs.unlinkSync(fakeDataBase));
