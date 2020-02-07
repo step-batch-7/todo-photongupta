@@ -1,5 +1,22 @@
-const {app} = require('../lib/handler');
+const fs = require('fs');
 const request = require('supertest');
+const {stringify} = require('querystring');
+const {config} = require('../config');
+const fakeDataBase = config.path;
+const content = JSON.stringify([
+  {
+    title: 'complete Todo',
+    id: 124,
+    todoItems: [{item: 'wite Todo', id: 1, isDone: false}]
+  },
+  {
+    title: 'shopping',
+    id: 123,
+    todoItems: [{item: 'buy shoe', id: 1, isDone: false}]
+  }
+]);
+fs.writeFileSync(fakeDataBase, content, 'utf8');
+const {app} = require('../lib/handler');
 
 describe('GET /', function() {
   it('test for get request with file path /', function(done) {
@@ -45,6 +62,7 @@ describe('POST /addTodo.html', function() {
     request(app.serve.bind(app))
       .post('/addTodo.html')
       .set('Accept', '*/*')
+      .send(stringify({title: 'go for break', todoItem: 'drink milk'}))
       .expect('Location', '/index.html')
       .expect(302, done);
   });
@@ -54,6 +72,7 @@ describe('POST /addItem', function() {
   it('test  for post request with url /addItem', function(done) {
     request(app.serve.bind(app))
       .post('/addItem')
+      .send(stringify({todoId: 123, item: 'drink juice'}))
       .set('Accept', '*/*')
       .expect('Location', '/showList.html')
       .expect(302, done);
@@ -65,6 +84,7 @@ describe('POST /deleteTodo', function() {
     request(app.serve.bind(app))
       .post('/deleteTodo')
       .set('Accept', '*/*')
+      .send(stringify({todoId: 123}))
       .expect('Location', '/showList.html')
       .expect(302, done);
   });
@@ -75,9 +95,11 @@ describe('POST /deleteItem', function() {
     request(app.serve.bind(app))
       .post('/deleteItem')
       .set('Accept', '*/*')
+      .send(stringify({todoId: 124, itemId: 1}))
       .expect('Location', '/showList.html')
       .expect(302, done);
   });
+  after(() => fs.unlinkSync(fakeDataBase));
 });
 
 describe('POST /bad', function() {
