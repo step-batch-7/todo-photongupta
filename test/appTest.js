@@ -30,6 +30,16 @@ describe('GET /showList.html', function() {
   });
 });
 
+describe('GET /todoList.json', function() {
+  it('test for get request with file path /todoList.json', function(done) {
+    request(app.serve.bind(app))
+      .get('/todoList.json')
+      .set('Accept', '*/*')
+      .expect('Content-Type', 'application/json')
+      .expect(200, done);
+  });
+});
+
 describe('POST /addTodo.html', function() {
   it('test  for post request with url /addTodo.html', function(done) {
     request(app.serve.bind(app))
