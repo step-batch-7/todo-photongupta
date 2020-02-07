@@ -21,6 +21,26 @@ describe('GET /bad', function() {
   });
 });
 
+describe('POST /addTodo.html', function() {
+  it('test  for post request with file not existing', function(done) {
+    request(app.serve.bind(app))
+      .post('/addTodo.html')
+      .set('Accept', '*/*')
+      .expect('Location', '/index.html')
+      .expect(302, done);
+  });
+});
+
+describe('POST /addItem', function() {
+  it('test  for post request with file not existing', function(done) {
+    request(app.serve.bind(app))
+      .post('/addItem')
+      .set('Accept', '*/*')
+      .expect('Location', '/showList')
+      .expect(302, done);
+  });
+});
+
 describe('POST /bad', function() {
   it('test  for post request with file not existing', function(done) {
     request(app.serve.bind(app))
