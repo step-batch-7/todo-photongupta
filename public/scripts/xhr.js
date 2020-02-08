@@ -160,20 +160,6 @@ const todoDetailInHtml = function(resText, todoItems) {
     `;
 };
 
-const showSearchBar = function() {
-  const searchBar = document.querySelector('.searchBar');
-  searchBar.style.transform = 'scaleZ(1)';
-  const back = document.querySelector('.back');
-  back.style.transform = 'scaleZ(0)';
-};
-
-const removeSearchBar = function() {
-  const searchBar = document.querySelector('.searchBar');
-  searchBar.style.transform = 'scaleZ(0)';
-  const back = document.querySelector('.back');
-  back.style.transform = 'scaleZ(0)';
-};
-
 const filterTodo = function(todo) {
   const title = todo.children[0].innerText.toLowerCase();
   return title.includes(this.toLowerCase());
@@ -187,3 +173,5 @@ const searchTodo = function() {
   const requiredTodo = todos.filter(filterTodo.bind(input.value));
   requiredTodo.forEach(todo => (todo.style.display = 'block'));
 };
+
+const searchItem = function() {};

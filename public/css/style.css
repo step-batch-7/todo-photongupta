@@ -73,7 +73,6 @@ h1 {
 
 .items {
   height: 22vw;
-
   overflow: scroll;
   margin-bottom: 5vh;
 }
