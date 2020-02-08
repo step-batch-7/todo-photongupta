@@ -67,7 +67,7 @@ describe('POST /addTodo.html', function() {
       .post('/addTodo.html')
       .set('Accept', '*/*')
       .send(stringify({title: 'go for break', todoItem: 'drink milk'}))
-      .expect('Location', '/index.html')
+      .expect('Location', '/showList.html')
       .expect(302, done);
   });
 });
@@ -78,8 +78,7 @@ describe('POST /addItem', function() {
       .post('/addItem')
       .send(stringify({todoId: 123, item: 'drink juice'}))
       .set('Accept', '*/*')
-      .expect('Location', '/showList.html')
-      .expect(302, done);
+      .expect(200, done);
   });
 });
 
@@ -89,8 +88,7 @@ describe('POST /updateStatus', function() {
       .post('/updateStatus')
       .set('Accept', '*/*')
       .send(stringify({todoId: 124, ids: '1, 2'}))
-      .expect('Location', '/showList.html')
-      .expect(302, done);
+      .expect(200, done);
   });
 });
 
@@ -100,8 +98,7 @@ describe('POST /deleteTodo', function() {
       .post('/deleteTodo')
       .set('Accept', '*/*')
       .send(stringify({todoId: 123}))
-      .expect('Location', '/showList.html')
-      .expect(302, done);
+      .expect(200, done);
   });
 });
 
@@ -111,8 +108,7 @@ describe('POST /deleteItem', function() {
       .post('/deleteItem')
       .set('Accept', '*/*')
       .send(stringify({todoId: 124, itemId: 1}))
-      .expect('Location', '/showList.html')
-      .expect(302, done);
+      .expect(200, done);
   });
 });
 
