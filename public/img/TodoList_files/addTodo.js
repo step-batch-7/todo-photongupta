@@ -92,9 +92,7 @@ const updateIsDoneStatus = function() {
 const removeDetail = function() {
   getXmlHttpRequest('/showList.html', renderScreen);
   const detail = document.querySelector('.todoDetail');
-  detail.style.display = 'none';
-  const todoList = document.querySelector('.todo');
-  todoList.style.display = 'block';
+  detail.style['margin-top'] = '-100vh';
 };
 
 const showDetail = function() {
@@ -124,9 +122,7 @@ const modifyItems = function() {
 const showTodoItems = function(resText, args) {
   const detail = document.querySelector('.todoDetail');
   detail.id = args.todoId;
-  detail.style.display = 'block';
-  const todoList = document.querySelector('.todo');
-  todoList.style.display = 'none';
+  detail.style['margin-top'] = '0vh';
   resText = JSON.parse(resText)
     .filter(todo => todo.id === +args.todoId)
     .flat();
