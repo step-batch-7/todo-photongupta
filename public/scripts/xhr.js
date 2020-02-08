@@ -5,7 +5,7 @@ const itemsInHtml = function(task) {
    <div class="showItems">
        <input type="checkbox" name="isDone" class="TickItem" ${isChecked} id="${id}" />
        <p>${item}</p>
-       <img src="../img/minus.png" class="delete" onclick="deleteItem()" id="${id}"/>
+       <img src="../img/minus.png" class="icon delete" onclick="deleteItem()" id="${id}"/>
    </div><br/>`;
 };
 
@@ -163,6 +163,15 @@ const todoDetailInHtml = function(resText, todoItems) {
 const showSearchBar = function() {
   const searchBar = document.querySelector('.searchBar');
   searchBar.style.transform = 'scaleZ(1)';
+  const back = document.querySelector('.back');
+  back.style.transform = 'scaleZ(0)';
+};
+
+const removeSearchBar = function() {
+  const searchBar = document.querySelector('.searchBar');
+  searchBar.style.transform = 'scaleZ(0)';
+  const back = document.querySelector('.back');
+  back.style.transform = 'scaleZ(0)';
 };
 
 const filterTodo = function(todo) {
@@ -176,14 +185,5 @@ const searchTodo = function() {
   let todos = Array.from(titles);
   todos.forEach(todo => (todo.style.display = 'none'));
   const requiredTodo = todos.filter(filterTodo.bind(input.value));
-  if (requiredTodo.length === 0) {
-    const todoList = document.querySelector('.todo');
-    todoList.innerHTML = `
-  <div class="searchEmpty">
-    <img src="img/cry.png" class="icon" />&nbsp&nbsp
-    <p>Sorry!! no items available....</p>
-  </div>
-  `;
-  }
   requiredTodo.forEach(todo => (todo.style.display = 'block'));
 };

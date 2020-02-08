@@ -16,7 +16,7 @@ const todoList = `
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="./scripts/addTodo.js"></script>
+    <script src="./scripts/xhr.js"></script>
     <title>TodoList</title>
   </head>
   <body id="todo">
@@ -28,8 +28,7 @@ const todoList = `
       placeholder="Search here..."
       class="searchBar"
       oninput="searchTodo()"
-    />
-    <img src="img/search.png" class="icon" onclick="showSearchBar()"/>
+      />
     <img src="img/plus.png" class="icon" onclick="showAddForm()"/>
     <img src="img/home.png" class="icon" onclick="location.href='index.html'" />
     <img src="img/menu.png" class="icon" />

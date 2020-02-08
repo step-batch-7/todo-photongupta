@@ -36,9 +36,6 @@ h1 {
   margin-bottom: -4%;
 }
 
-.addTodoIcon {
-  height: 6vh;
-}
 .todoBox {
   text-align: center;
   display: inline-block;
@@ -48,7 +45,9 @@ h1 {
 .option {
   display: flex;
   background-image: linear-gradient(rgb(220, 220, 220), rgb(250, 250, 250));
-  border-radius: 20px;
+  justify-content: space-evenly;
+  width: 8vw;
+  border-radius: 10px;
 }
 
 .form {
@@ -73,7 +72,7 @@ h1 {
 }
 
 .items {
-  height: 32vh;
+  height: 22vw;
 
   overflow: scroll;
   margin-bottom: 5vh;
@@ -130,13 +129,18 @@ h1 {
   display: flex;
   justify-content: space-between;
   box-shadow: 2px 2px 1px rgb(150, 150, 150);
-  border-radius: 10px;
   font-size: 20px;
-  height: 6vh;
   width: 40vw;
+  color: rgb(80, 80, 80);
   overflow: scroll;
+  /* display: none;   */
   text-align: left;
 }
+
+/* .showItems:hover {
+  background-color: white;
+  color: black;
+} */
 
 .showTitle:hover {
   background-image: linear-gradient(rgb(250, 250, 250), rgb(192, 214, 199));
@@ -168,10 +172,9 @@ h1 {
 }
 
 .delete {
-  height: 75%;
-  width: 8%;
   margin-top: auto;
   margin-bottom: auto;
+
   /* display: none; */
 }
 
@@ -230,11 +233,8 @@ h1 {
 }
 
 .searchBar {
-  height: 5.5vh;
   width: 30vw;
-  margin-bottom: 2%;
   font-size: 1.5vw;
-  transform: scaleZ(0);
 }
 
 .icon {
@@ -243,8 +243,8 @@ h1 {
 }
 
 .menuBar {
-  margin-left: 42vw;
-  margin-top: 10vh;
+  margin-left: 45vw;
+  margin-top: 12vh;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -252,4 +252,8 @@ h1 {
 .searchEmpty {
   display: flex;
   justify-content: center;
+}
+
+.back {
+  transform: scaleZ(0);
 }
