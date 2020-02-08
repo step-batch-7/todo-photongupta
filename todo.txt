@@ -90,9 +90,11 @@ tree
 
 ✅8=> provide an option to add the items in the existing todo
 
-9=> make a function to generate id for todo and todo items
+✅9=>add the feature of searching the todo by their title name
 
-10=> ask for confirmation for deleting items and todoList
+=> make a function to generate id for todo and todo items
+
+=> ask for confirmation for deleting items and todoList
 
 
 

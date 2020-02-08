@@ -27,7 +27,7 @@ const todoList = `
       type="text"
       placeholder="Search here..."
       class="searchBar"
-      oninput="filterTodo()"
+      oninput="searchTodo()"
     />
     <img src="img/search.png" class="icon" onclick="showSearchBar()"/>
     <img src="img/plus.png" class="icon" onclick="showAddForm()"/>

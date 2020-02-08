@@ -164,3 +164,26 @@ const showSearchBar = function() {
   const searchBar = document.querySelector('.searchBar');
   searchBar.style.transform = 'scaleZ(1)';
 };
+
+const filterTodo = function(todo) {
+  const title = todo.children[0].innerText.toLowerCase();
+  return title.includes(this.toLowerCase());
+};
+
+const searchTodo = function() {
+  const input = document.querySelector('.searchBar');
+  const titles = document.getElementsByClassName('showTitle');
+  let todos = Array.from(titles);
+  todos.forEach(todo => (todo.style.display = 'none'));
+  const requiredTodo = todos.filter(filterTodo.bind(input.value));
+  if (requiredTodo.length === 0) {
+    const todoList = document.querySelector('.todo');
+    todoList.innerHTML = `
+  <div class="searchEmpty">
+    <img src="img/cry.png" class="icon" />&nbsp&nbsp
+    <p>Sorry!! no items available....</p>
+  </div>
+  `;
+  }
+  requiredTodo.forEach(todo => (todo.style.display = 'block'));
+};
