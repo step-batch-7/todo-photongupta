@@ -165,13 +165,31 @@ const filterTodo = function(todo) {
   return title.includes(this.toLowerCase());
 };
 
-const searchTodo = function() {
-  const input = document.querySelector('.searchBar');
-  const titles = document.getElementsByClassName('showTitle');
-  let todos = Array.from(titles);
-  todos.forEach(todo => (todo.style.display = 'none'));
-  const requiredTodo = todos.filter(filterTodo.bind(input.value));
+const searchTodo = function(todos, input) {
+  const requiredTodo = todos.filter(filterTodo.bind(input));
   requiredTodo.forEach(todo => (todo.style.display = 'block'));
 };
 
 const searchItem = function() {};
+
+const search = function() {
+  const input = document.querySelector('.searchBar');
+  const titles = document.getElementsByClassName('showTitle');
+  let todos = Array.from(titles);
+  todos.forEach(todo => (todo.style.display = 'none'));
+  if (toggleSearch()) {
+    searchTodo(todos, input.value);
+  } else {
+    searchItem(todos, input.value);
+  }
+};
+
+const toggleSearch = function() {
+  return document.querySelector('#toggle').checked;
+};
+
+const toggleSearchStatus = function() {
+  const input = document.querySelector('.searchBar');
+  if (toggleSearch()) input.placeholder = 'search for todo ...';
+  else input.placeholder = 'search for task ...';
+};
