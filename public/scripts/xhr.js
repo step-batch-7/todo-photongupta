@@ -3,8 +3,8 @@ const itemsInHtml = function(task) {
   const isChecked = isDone ? 'checked' : '';
   return `
    <div class="showItems">
-       <input type="checkbox" name="isDone" class="TickItem" ${isChecked} id="${id}" />
-       <p>${item}</p>
+       <input type="checkbox" name="isDone" editable="true" class="TickItem" ${isChecked} id="${id}" />
+       <p contenteditable="true">${item}</p>
        <img src="../img/minus.png" class="icon delete" onclick="deleteItem()" id="${id}"/>
    </div><br/>`;
 };
@@ -52,8 +52,18 @@ const postXmlHttpRequest = function(url, body, callback, args) {
   xhr.send(body);
 };
 
+const editTitle = function() {
+  const newTitle = event.target.innerText;
+  const todoId = event.target.parentElement.id;
+  const body = `todoId=${todoId}&newTitle=${newTitle}`;
+  postXmlHttpRequest('/editTitle', body, requestForScreenContent, {
+    url: '/showList.html',
+    callback: renderScreen
+  });
+};
+
 const deleteTodo = function() {
-  const todoId = event.target.getAttribute('id');
+  const todoId = event.target.parentElement.id;
   const body = `todoId=${todoId}`;
   postXmlHttpRequest('/deleteTodo', body, requestForScreenContent, {
     url: '/showList.html',
@@ -170,7 +180,9 @@ const searchTodo = function(todos, input) {
   requiredTodo.forEach(todo => (todo.style.display = 'block'));
 };
 
-const searchItem = function() {};
+const searchItem = function(todos, input) {
+  const requiredTodo = todos.filter();
+};
 
 const search = function() {
   const input = document.querySelector('.searchBar');

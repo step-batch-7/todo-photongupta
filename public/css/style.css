@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: serif;
   text-align: center;
   background-color: white;
   /* filter: invert();
@@ -11,35 +11,37 @@ h1 {
   color: rgb(54, 131, 9);
 }
 
-.title {
-  font-size: 25px;
-  margin: 2%;
-  padding-bottom: 4%;
-  box-shadow: 0px 2px 0px rgb(150, 150, 150);
-  white-space: nowrap;
-  overflow: auto;
+p {
+  margin-top: auto;
+  margin-bottom: auto;
 }
-
-.titleBox {
-  display: flex;
-  justify-content: space-evenly;
-  position: absolute;
-}
-
 .header {
   display: flex;
   font-size: 7vh;
-  font-family: serif;
   color: rgb(54, 131, 9);
   margin-top: -2%;
   margin-left: 2%;
   margin-bottom: -4%;
 }
 
-.todoBox {
-  text-align: center;
-  display: inline-block;
-  margin-top: 25%;
+.menuBar {
+  margin-left: 40vw;
+  margin-top: 12vh;
+}
+
+.showTitle {
+  display: flex;
+  box-shadow: 4px 4px 5px rgb(150, 150, 150);
+  border-radius: 10px;
+  min-height: 5vh;
+  width: 24.5vw;
+  margin: 1%;
+}
+
+.title {
+  font-size: 1.4vw;
+  width: 20vw;
+  margin: 2%;
 }
 
 .option {
@@ -59,16 +61,6 @@ h1 {
   left: 32%;
   width: 36%;
   font-size: 1.5vw;
-}
-
-.add {
-  border-radius: 5px;
-  height: 5vh;
-  width: 10vw;
-  font-size: 2vh;
-  font-weight: 600;
-  text-transform: capitalize;
-  margin-top: 2vh;
 }
 
 .items {
@@ -92,59 +84,39 @@ h1 {
   cursor: pointer;
   background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
 }
-.add:hover {
-  cursor: pointer;
-  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
-  box-shadow: 5px 5px 5px rgb(150, 150, 150);
-}
-
-.pen {
-  position: absolute;
-  height: 50vh;
-  top: 30%;
-  left: 5%;
-}
 
 .todo {
-  display: block;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  overflow: scroll;
   height: 75vh;
-}
-
-.showTitle {
-  box-shadow: 4px 4px 5px rgb(150, 150, 150);
-  border-radius: 10px;
-  font-size: 1.4vw;
-  height: 22vh;
   width: 25vw;
-  margin: 0.8%;
-  background-color: white;
+  border-right: 1px solid black;
 }
 
 .showItems {
   display: flex;
-  justify-content: space-between;
-  box-shadow: 2px 2px 1px rgb(150, 150, 150);
-  font-size: 20px;
-  width: 40vw;
-  color: rgb(80, 80, 80);
+  box-shadow: 2px 2px 1px rgb(50, 50, 50);
+  width: 30vw;
+
+  color: rgb(100, 100, 100);
   overflow: scroll;
-  /* display: none;   */
-  text-align: left;
+  font-weight: 500;
 }
 
-/* .showItems:hover {
-  background-color: white;
+.showItems,
+.showTitle:hover img {
+  display: block;
+}
+
+/* .showItems, */
+.showTitle:hover p {
+  display: block;
+}
+
+.showItems:hover p {
   color: black;
-} */
+}
 
 .showTitle:hover {
   background-image: linear-gradient(rgb(250, 250, 250), rgb(192, 214, 199));
-  box-shadow: 6px 6px 4px rgb(150, 150, 150);
-  display: block;
 }
 
 .todoDetail {
@@ -165,16 +137,17 @@ h1 {
 
 .titleHeading {
   color: black;
-  margin-left: auto;
-  margin-right: auto;
-  /* border-bottom: 1px solid black; */
+}
+.dustbin {
+  right: 0;
 }
 
 .delete {
   margin-top: auto;
   margin-bottom: auto;
-
-  /* display: none; */
+  position: relative;
+  height: 1.5vw;
+  display: none;
 }
 
 .icons {
@@ -238,14 +211,7 @@ h1 {
 
 .icon {
   cursor: pointer;
-  height: 35px;
-}
-
-.menuBar {
-  margin-left: 40vw;
-  margin-top: 12vh;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  height: 30px;
 }
 
 .searchEmpty {
@@ -295,10 +261,6 @@ h1 {
 
 input:checked + .slider {
   background-color: #2196f3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
