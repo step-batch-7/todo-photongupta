@@ -18,14 +18,11 @@ const itemsInHtml = function(task) {
 
 const todoDetailInHtml = function(resText, todoItems) {
   return `
-  <p class="titleHeading">${resText[0].title}</p><br>
-  <div id="showItemList">
-    <div class="showItems">${todoItems.join('')}</div><br>
-    <input name="item" class="input" id="addMoreTask" autocomplete="off" required type="text" onkeydown="addTask(event)" placeholder="tasks..." ></input >
-    <img src="../img/plus.png" alt="add" class="icon" onclick="addTask(event)" id="__id__"/><br><br>
-    <img src="../img/back.png" class="icon" onclick="removeDetail()">
-    <img src="../img/tick.png" class="icon" onclick="updateIsDoneStatus()">
-  </div>`;
+  <h1 class="titleHeading">${resText[0].title}</h1>
+  <div class="showItems">${todoItems.join('')}</div><br>
+  <img src="../img/plus.png" alt="add" class="icon" onclick="addTask(event)" id="__id__"/>
+  <input name="item" class="input" id="addMoreTask" autocomplete="off" required type="text" onkeydown="addTask(event)" placeholder="tasks..." ></input >
+  <button class="add" onclick="updateIsDoneStatus()">Save changes</button>`;
 };
 
 const addInputBox = function(event) {
@@ -144,15 +141,15 @@ const updateItemList = function({todoId}) {
 const removeDetail = function() {
   getXmlHttpRequest('/showList.html', updateTodoList);
   const detail = document.querySelector('.todoDetail');
-  detail.style.transform = 'scale(0)';
+  detail.style.display = 'none';
+  const todoList = document.querySelector('.todo');
+  todoList.style.display = 'block';
 };
 
 const showTodoItems = function(resText, args) {
   const detail = document.querySelector('.todoDetail');
   detail.id = args.todoId;
   detail.style.transform = 'scale(1)';
-  const form = document.querySelector('.form');
-  form.style.transform = 'scale(0)';
   resText = JSON.parse(resText, args.todoId)
     .filter(todo => todo.id === +args.todoId)
     .flat();
@@ -162,9 +159,9 @@ const showTodoItems = function(resText, args) {
 
 const showAddForm = function() {
   const todoList = document.querySelector('.todoDetail');
-  todoList.style.transform = 'scale(0)';
+  todoList.style.display = 'none';
   const form = document.querySelector('.form');
-  form.style.transform = 'scale(1)';
+  form.style.transform = 'scaleZ(1)';
 };
 
 // const filterTodo = function(todo) {

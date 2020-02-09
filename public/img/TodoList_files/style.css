@@ -53,7 +53,7 @@ p {
 
 .title {
   font-size: 1.4vw;
-  width: 18vw;
+  width: 18.5vw;
   margin: 2.4%;
 }
 
@@ -69,19 +69,19 @@ p {
 }
 
 .todoDetail {
+  height: 45vw;
   overflow: scroll;
   transform: scale(0);
-}
-
-#showItemList {
-  border: 1px solid black;
-  height: 34vw;
+  transition: 1s;
+  margin: auto;
+  width: 60vw;
 }
 
 .showItems {
   margin: auto;
-  width: 34vw;
-  height: 26vw;
+  border: 1px solid black;
+  width: 40vw;
+  height: 30vw;
   overflow: scroll;
   border-radius: 8px;
 }
@@ -91,41 +91,25 @@ p {
   display: flex;
   box-shadow: 2px 2px 1px rgb(50, 50, 50);
   height: 3vw;
-  font-weight: 200;
+  font-weight: 500;
 }
 
 .item:hover img {
   display: block;
 }
 
-.item > p {
-  width: 29vw;
-}
-
-p:hover {
-  font-weight: 800;
-}
-
 .task {
   width: 34vw;
 }
 
-.right {
-  display: flex;
-}
-.right > div {
-  position: absolute;
-  margin-top: 1.5vw;
-  transition: 1s;
-  width: 35vw;
-  left: 45vw;
-}
-
 .form {
-  z-index: 2;
-  height: 40vw;
   transform: scale(0);
+  transition: 1s;
+  /* position: absolute; */
   border: 1px solid black;
+  width: 36vw;
+  height: 30vw;
+  margin: auto;
   font-size: 1.5vw;
 }
 
