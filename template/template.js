@@ -1,17 +1,12 @@
 const titles = `
-<div class="showTitle"  id="__id__">
-<p class="title"  contenteditable="true" onblur="editTitle()">__title__&nbsp</p>
+<div class="showTitle"  id="__id__" >
+<p class="title"  contenteditable="true" onkeyDown="editTitle()">__title__&nbsp</p>
 <p class="">__left__&nbsp</p>
-<img src="../img/minus.png" class="delete" onclick="deleteTodo()"/>
+<img src="../img/minus.png" class="close" onclick="deleteTodo()"/>
+<img src="../img/edit.png" class="close" onclick="showTasks()"/>
+
 </div>
 `;
-
-/* <div class="icons">
-   <span >
-    <img src="../img/task.png" class="detailIcon" onclick="showDetail(event)" id="__id__"/>
-   </span>
-  </div> */
-
 const todoList = `
 <html lang="en">
   <head>
@@ -45,7 +40,13 @@ const todoList = `
 
 <hr />
         
-<div class="form">
+
+<div class="todoHistory">
+    <div class="todo">
+    <h2>Your todos...</h2>
+      __todoList__
+    </div>
+    <div class="form">
 <form method="POST">
     <p for="Add your todo">Add Your Todo</p>
     <br />
@@ -80,11 +81,8 @@ const todoList = `
 
 </form>
 </div>
-    <div class="todo">
-    <h2>Your todos...</h2>
-      __todoList__
-    </div>
     <div class="todoDetail"></div>
+    </div>
   </body>
 </html>
 `;

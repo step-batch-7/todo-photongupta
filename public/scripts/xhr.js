@@ -2,10 +2,10 @@ const itemsInHtml = function(task) {
   const {item, id, isDone} = task;
   const isChecked = isDone ? 'checked' : '';
   return `
-   <div class="showItems">
-       <input type="checkbox" name="isDone" editable="true" class="TickItem" ${isChecked} id="${id}" />
-       <p contenteditable="true">${item}</p>
-       <img src="../img/minus.png" class="icon delete" onclick="deleteItem()" id="${id}"/>
+   <div class="item" id="${id}">
+       <input type="checkbox" name="isDone" editable="true" class="TickItem" ${isChecked} />
+       <p class="task" contenteditable="true" onkeyDown="editTask()">${item}</p>
+       <img src="../img/minus.png" class="close" onclick="deleteItem()" />
    </div><br/>`;
 };
 
@@ -48,18 +48,35 @@ const postXmlHttpRequest = function(url, body, callback, args) {
   };
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  console.log(body);
   xhr.send(body);
 };
 
 const editTitle = function() {
-  const newTitle = event.target.innerText;
-  const todoId = event.target.parentElement.id;
-  const body = `todoId=${todoId}&newTitle=${newTitle}`;
-  postXmlHttpRequest('/editTitle', body, requestForScreenContent, {
-    url: '/showList.html',
-    callback: renderScreen
-  });
+  if (event.keyCode == 13) {
+    event.target.blur();
+    const newTitle = event.target.innerText;
+    const todoId = event.target.parentElement.id;
+    const body = `todoId=${todoId}&newTitle=${newTitle}`;
+    postXmlHttpRequest('/editTitle', body, requestForScreenContent, {
+      url: '/showList.html',
+      callback: renderScreen
+    });
+  }
+};
+
+const editTask = function() {
+  if (event.keyCode == 13) {
+    event.target.blur();
+    const newTask = event.target.innerText;
+    const taskId = event.target.parentElement.id;
+    const todoId = document.querySelector('.todoDetail').getAttribute('id');
+    console.log(newTask, taskId, todoId);
+    const body = `taskId=${taskId}&newTask=${newTask}&todoId=${todoId}`;
+    postXmlHttpRequest('/editTask', body, requestForScreenContent, {
+      url: '/showList.html',
+      callback: renderScreen
+    });
+  }
 };
 
 const deleteTodo = function() {
@@ -80,7 +97,7 @@ const renderScreen = function(resText) {
 };
 
 const deleteItem = function() {
-  const ItemId = event.target.getAttribute('id');
+  const ItemId = event.target.parentElement.id;
   const todoId = document.querySelector('.todoDetail').getAttribute('id');
   const body = `itemId=${ItemId}&todoId=${todoId}`;
   postXmlHttpRequest('/deleteItem', body, updateDetail, {todoId});
@@ -107,8 +124,8 @@ const removeDetail = function() {
   todoList.style.display = 'block';
 };
 
-const showDetail = function() {
-  const todoId = event.target.getAttribute('id');
+const showTasks = function() {
+  const todoId = event.target.parentElement.id;
   getXmlHttpRequest('/todoList.json', showTodoItems, {todoId});
 };
 
@@ -117,7 +134,6 @@ const modifyItemList = function(event) {
     const detail = document.querySelector('.todoDetail');
     const todoId = detail.getAttribute('id');
     const inputValue = document.querySelector('.input').value;
-    console.log(inputValue);
     const body = `todoId=${todoId}&item=${inputValue}`;
     postXmlHttpRequest('/addItem', body, updateDetail, {todoId});
   }
@@ -134,10 +150,8 @@ const modifyItems = function() {
 const showTodoItems = function(resText, args) {
   const detail = document.querySelector('.todoDetail');
   detail.id = args.todoId;
-  detail.style.display = 'block';
-  const todoList = document.querySelector('.todo');
-  todoList.style.display = 'none';
-  resText = JSON.parse(resText)
+  detail.style.transform = 'scale(1)';
+  resText = JSON.parse(resText, args.todoId)
     .filter(todo => todo.id === +args.todoId)
     .flat();
   const todoItems = resText[0].todoItems.map(task => itemsInHtml(task));
@@ -146,7 +160,7 @@ const showTodoItems = function(resText, args) {
 
 const showAddForm = function() {
   getXmlHttpRequest('/addTodo.html', appendChildTo);
-  const todoList = document.querySelector('.todo');
+  const todoList = document.querySelector('.todoDetail');
   todoList.style.display = 'none';
   const form = document.querySelector('.form');
   form.style.transform = 'scaleZ(1)';
@@ -162,10 +176,10 @@ const appendChildTo = function(resText) {
 const todoDetailInHtml = function(resText, todoItems) {
   return `
   <h1 class="titleHeading">${resText[0].title}</h1>
-    <div class="item">
+    <div class="showItems">
     ${todoItems.join('')}
     </div><br>
-    <img src="../img/plus.png" class="detailIcon" onclick="modifyItems(event)" id="__id__"/>
+    <img src="../img/plus.png" class="icon" onclick="modifyItems(event)" id="__id__"/>
     <button type="submit" class="add" onclick="updateIsDoneStatus()">Save changes</button>
     `;
 };

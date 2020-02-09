@@ -15,6 +15,11 @@ p {
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.icon {
+  cursor: pointer;
+  height: 30px;
+}
 .header {
   display: flex;
   font-size: 7vh;
@@ -38,18 +43,64 @@ p {
   margin: 1%;
 }
 
-.title {
-  font-size: 1.4vw;
-  width: 20vw;
-  margin: 2%;
+.showTitle:hover img {
+  display: block;
 }
 
-.option {
+.showTitle:hover {
+  background-image: linear-gradient(rgb(250, 250, 250), rgb(192, 214, 199));
+}
+
+.title {
+  font-size: 1.4vw;
+  width: 18.5vw;
+  margin: 2.4%;
+}
+
+.todoHistory {
   display: flex;
-  background-image: linear-gradient(rgb(220, 220, 220), rgb(250, 250, 250));
-  justify-content: space-evenly;
-  width: 8vw;
-  border-radius: 10px;
+}
+.todoHistory > div {
+  height: 45vw;
+  overflow: scroll;
+}
+
+.todo {
+  width: 25vw;
+  border-right: 1px solid black;
+}
+
+.todoDetail {
+  transform: scale(0);
+  transition: 1s;
+  margin: auto;
+  width: 60vw;
+  background-color: rgb(240, 240, 240);
+}
+
+.showItems {
+  margin: auto;
+  border: 1px solid black;
+  width: 40vw;
+  height: 30vw;
+  overflow: scroll;
+  border-radius: 8px;
+}
+
+.item {
+  margin: auto;
+  display: flex;
+  box-shadow: 2px 2px 1px rgb(50, 50, 50);
+  height: 3vw;
+  font-weight: 500;
+}
+
+.item:hover img {
+  display: block;
+}
+
+.task {
+  width: 34vw;
 }
 
 .form {
@@ -62,11 +113,17 @@ p {
   width: 36%;
   font-size: 1.5vw;
 }
+.option {
+  display: flex;
+  background-image: linear-gradient(rgb(220, 220, 220), rgb(250, 250, 250));
+  justify-content: space-evenly;
+  width: 8vw;
+  border-radius: 10px;
+}
 
-.items {
-  height: 22vw;
-  overflow: scroll;
-  margin-bottom: 5vh;
+.option:hover {
+  cursor: pointer;
+  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
 }
 
 .tickItem {
@@ -76,112 +133,10 @@ p {
 }
 
 .close {
-  height: 5vh;
-  margin-right: 94%;
-}
-
-.option:hover {
-  cursor: pointer;
-  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
-}
-
-.todo {
-  height: 75vh;
-  width: 25vw;
-  border-right: 1px solid black;
-}
-
-.showItems {
-  display: flex;
-  box-shadow: 2px 2px 1px rgb(50, 50, 50);
-  width: 30vw;
-
-  color: rgb(100, 100, 100);
-  overflow: scroll;
-  font-weight: 500;
-}
-
-.showItems,
-.showTitle:hover img {
-  display: block;
-}
-
-/* .showItems, */
-.showTitle:hover p {
-  display: block;
-}
-
-.showItems:hover p {
-  color: black;
-}
-
-.showTitle:hover {
-  background-image: linear-gradient(rgb(250, 250, 250), rgb(192, 214, 199));
-}
-
-.todoDetail {
-  z-index: 2;
-  position: inherit;
-  top: 0;
-  transition: 1s;
-  margin-left: 25vw;
-  width: 50vw;
-  height: 75vh;
-  display: none;
-  background-color: rgb(220, 220, 220);
-}
-
-.tick {
-  margin-top: 1vh;
-}
-
-.titleHeading {
-  color: black;
-}
-.dustbin {
-  right: 0;
-}
-
-.delete {
   margin-top: auto;
   margin-bottom: auto;
-  position: relative;
   height: 1.5vw;
   display: none;
-}
-
-.icons {
-  display: flex;
-  margin: 10%;
-  justify-content: space-between;
-}
-
-.deleteTodo {
-  height: 5vh;
-  width: 3vw;
-  margin-top: 3%;
-  border-radius: 50%;
-}
-
-.detailIcon {
-  height: 5.5vh;
-  width: 3vw;
-  margin-top: 3%;
-}
-
-.detailIcon:hover {
-  cursor: pointer;
-}
-
-.deleteTodo:hover {
-  cursor: pointer;
-}
-
-.item {
-  height: 60vh;
-  overflow: scroll;
-  text-align: center;
-  display: inline-block;
 }
 
 .input {
@@ -207,71 +162,4 @@ p {
 .searchBar {
   width: 30vw;
   font-size: 1.5vw;
-}
-
-.icon {
-  cursor: pointer;
-  height: 30px;
-}
-
-.searchEmpty {
-  display: flex;
-  justify-content: center;
-}
-
-.back {
-  transform: scaleZ(0);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #2196f3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
 }
