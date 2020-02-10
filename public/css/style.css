@@ -86,6 +86,11 @@ p {
   border-radius: 8px;
 }
 
+.list {
+  height: 20vw;
+  overflow: scroll;
+}
+
 .item {
   margin: auto;
   display: flex;

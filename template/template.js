@@ -66,17 +66,6 @@ const todoList = `
             <p for="todoItem">Tasks</p>
             <div class="items">
               <ul class="list">
-                <li>
-                  <input
-                    name="todoItem"
-                    class="input"
-                    autocomplete="off"
-                    required
-                    type="text"
-                    onkeydown="addInputBox(event)"
-                    placeholder="tasks..."
-                  /><br /><br />
-                </li>
               </ul>
               <br />
             </div>
@@ -88,10 +77,10 @@ const todoList = `
             <img
               src="img/plus.png"
               class="icon"
-              onclick="addItems(event)"
+              onclick="addInputBox(event)"
               alt="addTodo"
             />
-            <img src="img/minus.png" class="icon" onclick="removeItems()" />
+            <img src="img/minus.png" class="icon" onclick="removeInputBox()" />
             <input type="image" class="icon" src="img/tick.png" />
           </form>
         </div>
