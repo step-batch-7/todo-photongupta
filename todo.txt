@@ -92,9 +92,7 @@ tree
 
 ✅9=>add the feature of searching the todo by their title name
 
-=> make a function to generate id for todo and todo items
-
-=>extract the different classes into different files
+✅10=>extract the different classes into different files
 
 =>change the template into home.html
 
@@ -107,6 +105,8 @@ tree
 =>separate the parseBody into functions according to  the responsibility
 
 =>make a generic function for xmlhttprequest
+
+=> make a function to generate id for todo and todo items
 
 => ask for confirmation for deleting items and todoList
 
