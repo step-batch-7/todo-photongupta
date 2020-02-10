@@ -167,38 +167,68 @@ const showAddForm = function() {
   form.style.transform = 'scale(1)';
 };
 
-// const filterTodo = function(todo) {
-//   const title = todo.children[0].innerText.toLowerCase();
-//   return title.includes(this.toLowerCase());
-// };
+const showFirstMatchDetail = function(requiredTodo) {
+  const todoId = requiredTodo[0].getAttribute('id');
+  getXmlHttpRequest('/todoList.json', showTodoItems, {todoId});
+};
 
-// const searchTodo = function(todos, input) {
-//   const requiredTodo = todos.filter(filterTodo.bind(input));
-//   requiredTodo.forEach(todo => (todo.style.display = 'block'));
-// };
+const filterTodo = function(todo) {
+  const title = todo.children[0].innerText.toLowerCase();
+  return title.includes(this.toLowerCase());
+};
 
-// const searchItem = function(todos, input) {
-//   const requiredTodo = todos.filter();
-// };
+const searchTodo = function(todos, input) {
+  const requiredTodo = todos.filter(filterTodo.bind(input));
+  if (requiredTodo.length) {
+    showFirstMatchDetail(requiredTodo);
+    requiredTodo.forEach(todo => (todo.style.transform = 'scale(1)'));
+  }
+  const todoList = document.querySelector('.todoDetail');
+  todoList.style.transform = 'scale(0)';
+};
 
-// const search = function() {
-//   const input = document.querySelector('.searchBar');
-//   const titles = document.getElementsByClassName('showTitle');
-//   let todos = Array.from(titles);
-//   todos.forEach(todo => (todo.style.display = 'none'));
-//   if (toggleSearch()) {
-//     searchTodo(todos, input.value);
-//   } else {
-//     searchItem(todos, input.value);
-//   }
-// };
+const hasSameId = function(todo) {
+  return todo.id == this.getAttribute('id');
+};
 
-// const toggleSearch = function() {
-//   return document.querySelector('#toggle').checked;
-// };
+const searchItem = function(resText, {todos, input}) {
+  const todoList = JSON.parse(resText);
+  const requiredTodo = todoList.filter(todo => {
+    const requiredItems = todo.todoItems.filter(task =>
+      task.item.toLowerCase().includes(input.toLowerCase())
+    );
+    return requiredItems.length > 0;
+  });
+  if (requiredTodo.length) {
+    const todoInHtml = todos.filter(todo =>
+      requiredTodo.some(hasSameId.bind(todo))
+    );
+    showFirstMatchDetail(todoInHtml);
+    todoInHtml.forEach(todo => (todo.style.transform = 'scale(1)'));
+  }
+  const todoDetail = document.querySelector('.todoDetail');
+  todoDetail.style.transform = 'scale(0)';
+};
 
-// const toggleSearchStatus = function() {
-//   const input = document.querySelector('.searchBar');
-//   if (toggleSearch()) input.placeholder = 'search for todo ...';
-//   else input.placeholder = 'search for task ...';
-// };
+const search = function() {
+  const input = document.querySelector('.searchBar');
+  const titles = document.getElementsByClassName('showTitle');
+  const todos = Array.from(titles);
+  todos.forEach(todo => (todo.style.transform = 'scale(0)'));
+  // if (toggleSearch()) {
+  // searchTodo(todos, input.value);
+  // } else {
+  getXmlHttpRequest('/todoList.json', searchItem, {todos, input: input.value});
+
+  // }
+};
+
+const toggleSearch = function() {
+  return document.querySelector('#toggle').checked;
+};
+
+const toggleSearchStatus = function() {
+  const input = document.querySelector('.searchBar');
+  if (toggleSearch()) input.placeholder = 'search for todo ...';
+  else input.placeholder = 'search for task ...';
+};
