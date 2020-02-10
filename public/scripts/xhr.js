@@ -215,20 +215,22 @@ const search = function() {
   const titles = document.getElementsByClassName('showTitle');
   const todos = Array.from(titles);
   todos.forEach(todo => (todo.style.transform = 'scale(0)'));
-  // if (toggleSearch()) {
-  // searchTodo(todos, input.value);
-  // } else {
-  getXmlHttpRequest('/todoList.json', searchItem, {todos, input: input.value});
-
-  // }
+  if (isSeachForTodo()) {
+    searchTodo(todos, input.value);
+  } else {
+    getXmlHttpRequest('/todoList.json', searchItem, {
+      todos,
+      input: input.value
+    });
+  }
 };
 
-const toggleSearch = function() {
-  return document.querySelector('#toggle').checked;
+const isSeachForTodo = function() {
+  return document.querySelector('#searchFor').value == 'todo';
 };
 
 const toggleSearchStatus = function() {
   const input = document.querySelector('.searchBar');
-  if (toggleSearch()) input.placeholder = 'search for todo ...';
+  if (isSeachForTodo()) input.placeholder = 'search for todo ...';
   else input.placeholder = 'search for task ...';
 };

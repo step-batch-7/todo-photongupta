@@ -25,10 +25,11 @@ const todoList = `
           class="searchBar"
           oninput="search()"
         />
-        <label class="switch">
-          <input type="checkbox" id="toggle" onclick="toggleSearchStatus()" />
-          <span class="slider"></span>
-        </label>
+  
+        <select id="searchFor" onchange="toggleSearchStatus()">
+  <option value="task">task</option>
+  <option value="todo">todo</option>
+</select>
 
         <img src="img/plus.png" class="icon" onclick="showAddForm()" />
         <img
