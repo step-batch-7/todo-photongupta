@@ -94,6 +94,8 @@ tree
 
 ✅10=>extract the different classes into different files
 
+✅11=>separate the parseBody into functions according to  the responsibility
+
 =>change the template into home.html
 
 =>replace all the repeating code in classes
@@ -101,8 +103,6 @@ tree
 =>extract frontend code into separate files based on responsibility
 
 =>handle client side errors
-
-=>separate the parseBody into functions according to  the responsibility
 
 =>make a generic function for xmlhttprequest
 
