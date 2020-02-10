@@ -94,9 +94,21 @@ tree
 
 => make a function to generate id for todo and todo items
 
+=>extract the different classes into different files
+
+=>change the template into home.html
+
+=>replace all the repeating code in classes
+
+=>extract frontend code into separate files based on responsibility
+
+=>handle client side errors
+
+=>separate the parseBody into functions according to  the responsibility
+
+=>make a generic function for xmlhttprequest
+
 => ask for confirmation for deleting items and todoList
-
-
 
 
 

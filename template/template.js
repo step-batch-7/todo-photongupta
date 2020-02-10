@@ -7,6 +7,7 @@ const titles = `
 
 </div>
 `;
+
 const todoList = `
 <html lang="en">
   <head>
@@ -25,12 +26,10 @@ const todoList = `
           class="searchBar"
           oninput="search()"
         />
-  
         <select id="searchFor" onchange="toggleSearchStatus()">
-  <option value="task">task</option>
-  <option value="todo">todo</option>
-</select>
-
+          <option value="task">task</option>
+          <option value="todo">todo</option>
+        </select>
         <img src="img/plus.png" class="icon" onclick="showAddForm()" />
         <img
           src="img/home.png"
@@ -39,9 +38,7 @@ const todoList = `
         />
       </div>
     </div>
-
     <hr />
-
     <div class="todoHistory">
       <div class="todo">
         <h2>Your todos...</h2>
@@ -49,10 +46,9 @@ const todoList = `
       </div>
       <div class="right">
         <div class="todoDetail"></div>
-
         <div class="form">
           <form method="POST">
-            <p for="Add your todo">Add Your Todo</p>
+            <p for="Add your todo" class="formHeading">Add Your Todo</p>
             <br />
             <input
               type="text"
@@ -62,7 +58,7 @@ const todoList = `
               class="input"
               placeholder="add title here..."
             /><br /><br />
-            <p for="todoItem">Tasks</p>
+            <p for="todoItem" class="formHeading">Tasks</p>
             <div class="items">
               <ul class="list">
                 <li>
@@ -98,6 +94,7 @@ const todoList = `
     </div>
   </body>
 </html>
+
 `;
 
 module.exports = {todoList, titles};

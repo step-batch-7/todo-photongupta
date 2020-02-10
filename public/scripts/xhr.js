@@ -30,7 +30,8 @@ const todoDetailInHtml = function(resText, todoItems) {
 
 const addInputBox = function(event) {
   if (event.keyCode === 13 || event.target.alt === 'addTodo') {
-    const input = `<input name="todoItem"  class="input" autocomplete="off" required type="text" onkeydown="addInputBox(event)" placeholder="tasks..." ></input ><br /><br />`;
+    const input = `<input name="todoItem"  class="input" autocomplete="off" required type="text"
+     onkeydown="addInputBox(event)" placeholder="tasks..." ></input ><br /><br />`;
     appendChildTo(input, {parent: '.list', child: 'li'});
   }
 };
@@ -153,11 +154,11 @@ const showTodoItems = function(resText, args) {
   detail.style.transform = 'scale(1)';
   const form = document.querySelector('.form');
   form.style.transform = 'scale(0)';
-  resText = JSON.parse(resText)
+  const todoDetail = JSON.parse(resText)
     .filter(todo => todo.id === +args.todoId)
     .flat();
-  const todoItems = resText[0].todoItems.map(task => itemsInHtml(task));
-  detail.innerHTML = todoDetailInHtml(resText, todoItems);
+  const todoItems = todoDetail[0].todoItems.map(task => itemsInHtml(task));
+  detail.innerHTML = todoDetailInHtml(todoDetail, todoItems);
 };
 
 const showAddForm = function() {
@@ -181,14 +182,12 @@ const searchTodo = function(todos, input) {
   const requiredTodo = todos.filter(filterTodo.bind(input));
   if (requiredTodo.length) {
     showFirstMatchDetail(requiredTodo);
-    requiredTodo.forEach(todo => (todo.style.transform = 'scale(1)'));
+    requiredTodo.forEach(todo => (todo.style.display = 'flex'));
   }
-  const todoList = document.querySelector('.todoDetail');
-  todoList.style.transform = 'scale(0)';
 };
 
 const hasSameId = function(todo) {
-  return todo.id == this.getAttribute('id');
+  return todo.id === this.getAttribute('id');
 };
 
 const searchItem = function(resText, {todos, input}) {
@@ -204,18 +203,16 @@ const searchItem = function(resText, {todos, input}) {
       requiredTodo.some(hasSameId.bind(todo))
     );
     showFirstMatchDetail(todoInHtml);
-    todoInHtml.forEach(todo => (todo.style.transform = 'scale(1)'));
+    todoInHtml.forEach(todo => (todo.style.display = 'flex'));
   }
-  const todoDetail = document.querySelector('.todoDetail');
-  todoDetail.style.transform = 'scale(0)';
 };
 
 const search = function() {
   const input = document.querySelector('.searchBar');
   const titles = document.getElementsByClassName('showTitle');
   const todos = Array.from(titles);
-  todos.forEach(todo => (todo.style.transform = 'scale(0)'));
-  if (isSeachForTodo()) {
+  todos.forEach(todo => (todo.style.display = 'none'));
+  if (isSearchForTodo()) {
     searchTodo(todos, input.value);
   } else {
     getXmlHttpRequest('/todoList.json', searchItem, {
@@ -225,12 +222,12 @@ const search = function() {
   }
 };
 
-const isSeachForTodo = function() {
+const isSearchForTodo = function() {
   return document.querySelector('#searchFor').value == 'todo';
 };
 
 const toggleSearchStatus = function() {
   const input = document.querySelector('.searchBar');
-  if (isSeachForTodo()) input.placeholder = 'search for todo ...';
+  if (isSearchForTodo()) input.placeholder = 'search for todo ...';
   else input.placeholder = 'search for task ...';
 };
