@@ -153,7 +153,7 @@ const showTodoItems = function(resText, args) {
   detail.style.transform = 'scale(1)';
   const form = document.querySelector('.form');
   form.style.transform = 'scale(0)';
-  resText = JSON.parse(resText, args.todoId)
+  resText = JSON.parse(resText)
     .filter(todo => todo.id === +args.todoId)
     .flat();
   const todoItems = resText[0].todoItems.map(task => itemsInHtml(task));

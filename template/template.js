@@ -37,7 +37,6 @@ const todoList = `
           class="icon"
           onclick="location.href='index.html'"
         />
-        <img src="img/menu.png" class="icon" />
       </div>
     </div>
 
@@ -66,6 +65,17 @@ const todoList = `
             <p for="todoItem">Tasks</p>
             <div class="items">
               <ul class="list">
+                <li>
+                  <input
+                    name="todoItem"
+                    class="input"
+                    autocomplete="off"
+                    required
+                    type="text"
+                    onkeydown="addInputBox(event)"
+                    placeholder="tasks..."
+                  /><br /><br />
+                </li>
               </ul>
               <br />
             </div>

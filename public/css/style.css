@@ -30,7 +30,7 @@ p {
 }
 
 .menuBar {
-  margin-left: 40vw;
+  margin-left: 44vw;
   margin-top: 12vh;
 }
 
@@ -188,4 +188,5 @@ p:hover {
 #searchFor {
   background-image: linear-gradient(rgb(250, 250, 250), rgb(220, 220, 220));
   zoom: 1.5;
+  margin-bottom: 1vw;
 }
