@@ -106,6 +106,10 @@ tree
 
 ✅16=>change the template into home.html
 
+✅17=>remove unwanted files
+
+=>rename the file
+
 =>handle client side errors
 
 => ask for confirmation for deleting items and todoList
