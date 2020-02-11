@@ -1,5 +1,5 @@
-                                   -----TODO APP-----
 *Data structure:
+                                   -----TODO APP-----
 //Array of objects
 [                         
   {
@@ -102,11 +102,11 @@ tree
 
 ✅14=>make a generic function for xmlhttprequest
 
+✅15=> make a function to generate id for todo and todo items
+
 =>change the template into home.html
 
 =>handle client side errors
-
-=> make a function to generate id for todo and todo items
 
 => ask for confirmation for deleting items and todoList
 
