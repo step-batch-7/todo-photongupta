@@ -13,6 +13,7 @@ const todoList = `
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="./scripts/render.js"></script>
     <script src="./scripts/xhr.js"></script>
     <script src="./scripts/search.js"></script>
     <title>TodoList</title>
