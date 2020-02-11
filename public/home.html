@@ -1,14 +1,3 @@
-const titles = `
-<div class="showTitle"  id="__id__" >
-<p class="title"  contenteditable="true" onkeyDown="editTitle()">__title__&nbsp</p>
-<p class="">__left__&nbsp</p>
-<img src="../img/minus.png" class="close" onclick="deleteTodo()"/>
-<img src="../img/edit.png" class="close" onclick="showTasks()"/>
-
-</div>
-`;
-
-const todoList = `
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -44,7 +33,6 @@ const todoList = `
     <div class="todoHistory">
       <div class="todo">
         <h2>Your todos...</h2>
-        __todoList__
       </div>
       <div class="right">
         <div class="todoDetail"></div>
@@ -96,7 +84,3 @@ const todoList = `
     </div>
   </body>
 </html>
-
-`;
-
-module.exports = {todoList, titles};

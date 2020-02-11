@@ -41,10 +41,6 @@ const addInputBox = function(event) {
   }
 };
 
-const updateTodoList = function(resText) {
-  document.getElementById('todo').innerHTML = resText;
-};
-
 const showTodoItems = function(resText, args) {
   const detail = document.querySelector('.todoDetail');
   detail.id = args.todoId;
@@ -63,4 +59,38 @@ const showAddForm = function() {
   todoList.style.transform = 'scale(0)';
   const form = document.querySelector('.form');
   form.style.transform = 'scale(1)';
+};
+
+const getLeftItems = function(todoItems) {
+  const leftItems = todoItems.filter(item => item.isDone);
+  const formatedLeftItem = `${leftItems.length}/${todoItems.length}`;
+  return formatedLeftItem;
+};
+
+const removeTitleBox = function() {
+  const titles = document.querySelector('.todo');
+  titles.removeChild(titles.lastChild);
+};
+
+const getHtmlForTitle = function(todo) {
+  const {id, title, todoItems} = todo;
+  const leftItems = getLeftItems(todoItems);
+  return `<div class="showTitle"  id=${id} >
+  <p class="title"  contenteditable="true" onkeyDown="editTitle()">${title}&nbsp</p>
+  <p class="">${leftItems}&nbsp</p>
+  <img src="../img/minus.png" class="close" onclick="deleteTodo()"/>
+  <img src="../img/edit.png" class="close" onclick="showTasks()"/>
+  </div>`;
+};
+
+const showTodoLists = function(resText) {
+  removeTitleBox();
+  const todoLists = JSON.parse(resText);
+  const titlesInHtml = todoLists.map(getHtmlForTitle).join('');
+  appendChildTo(titlesInHtml, {parent: '.todo', child: 'div'});
+};
+
+const removeDetail = function() {
+  const detail = document.querySelector('.todoDetail');
+  detail.style.transform = 'scale(0)';
 };

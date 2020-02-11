@@ -15,26 +15,17 @@ const showTasks = function() {
 };
 
 const editTitle = function() {
-  if (event.keyCode == 13) {
+  if (event.keyCode === 13) {
     event.target.blur();
     const newTitle = event.target.innerText;
     const todoId = event.target.parentElement.id;
     const body = `todoId=${todoId}&newTitle=${newTitle}`;
-    sendXmlHttpRequest(
-      '/editTitle',
-      'POST',
-      requestForScreenContent,
-      {
-        url: '/showList.html',
-        callback: updateTodoList
-      },
-      body
-    );
+    sendXmlHttpRequest('/editTitle', 'POST', showTodoLists, null, body);
   }
 };
 
 const editTask = function() {
-  if (event.keyCode == 13) {
+  if (event.keyCode === 13) {
     event.target.blur();
     const newTask = event.target.innerText;
     const taskId = event.target.parentElement.id;
@@ -51,30 +42,21 @@ const addTask = function(event) {
     const inputValue = document.querySelector('#addMoreTask').value;
     if (inputValue === '') return;
     const body = `todoId=${todoId}&item=${inputValue}`;
-    sendXmlHttpRequest('/addItem', 'POST', updateItemList, {todoId}, body);
+    sendXmlHttpRequest('/addItem', 'POST', showTodoItems, {todoId}, body);
   }
 };
 
 const deleteTodo = function() {
   const todoId = event.target.parentElement.id;
   const body = `todoId=${todoId}`;
-  sendXmlHttpRequest(
-    '/deleteTodo',
-    'POST',
-    requestForScreenContent,
-    {
-      url: '/showList.html',
-      callback: updateTodoList
-    },
-    body
-  );
+  sendXmlHttpRequest('/deleteTodo', 'POST', showTodoLists, null, body);
 };
 
 const deleteItem = function() {
   const ItemId = event.target.parentElement.id;
   const todoId = document.querySelector('.todoDetail').getAttribute('id');
   const body = `itemId=${ItemId}&todoId=${todoId}`;
-  sendXmlHttpRequest('/deleteItem', 'POST', updateItemList, {todoId}, body);
+  sendXmlHttpRequest('/deleteItem', 'POST', showTodoItems, {todoId}, body);
 };
 
 const updateIsDoneStatus = function() {
@@ -84,18 +66,11 @@ const updateIsDoneStatus = function() {
   const ids = checkedItem.map(box => box.parentElement.id);
   const body = `ids=${ids}&todoId=${todoId}`;
   sendXmlHttpRequest('/updateStatus', 'POST', removeDetail, null, body);
+  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);
 };
 
-const requestForScreenContent = function(args) {
-  sendXmlHttpRequest(args.url, 'GET', args.callback);
+const main = function() {
+  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);
 };
 
-const updateItemList = function(resText, {todoId}) {
-  sendXmlHttpRequest('/todoList.json', 'GET', showTodoItems, {todoId});
-};
-
-const removeDetail = function() {
-  sendXmlHttpRequest('/showList.html', 'GET', updateTodoList);
-  const detail = document.querySelector('.todoDetail');
-  detail.style.transform = 'scale(0)';
-};
+window.onload = main;

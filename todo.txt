@@ -104,7 +104,7 @@ tree
 
 ✅15=> make a function to generate id for todo and todo items
 
-=>change the template into home.html
+✅16=>change the template into home.html
 
 =>handle client side errors
 
