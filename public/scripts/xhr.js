@@ -2,13 +2,19 @@ const sendXmlHttpRequest = function(url, method, callback, args, body) {
   const xhr = new XMLHttpRequest();
   xhr.onload = function() {
     if (this.status === 200) {
-      callback(this.responseText, args);
+      let todoLists = this.responseText;
+      if (this.getResponseHeader('content-type') === 'application/json') {
+        todoLists = JSON.parse(todoLists);
+      }
+      callback(todoLists, args);
     } else {
       alert('something went wrong');
     }
   };
+
   xhr.open(method, url, true);
-  xhr.send(body);
+  body && xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify(body));
 };
 
 const showTasks = function() {
@@ -21,7 +27,7 @@ const editTitle = function() {
     event.target.blur();
     const newTitle = event.target.innerText;
     const todoId = event.target.parentElement.id;
-    const body = `todoId=${todoId}&newTitle=${newTitle}`;
+    const body = {todoId, newTitle};
     sendXmlHttpRequest('/editTitle', 'POST', showTodoLists, null, body);
   }
 };
@@ -32,7 +38,8 @@ const editTask = function() {
     const newTask = event.target.innerText;
     const taskId = event.target.parentElement.id;
     const todoId = document.querySelector('.todoDetail').getAttribute('id');
-    const body = `taskId=${taskId}&newTask=${newTask}&todoId=${todoId}`;
+    const body = {todoId, newTask, taskId};
+
     sendXmlHttpRequest('/editTask', 'POST', showTodoItems, {todoId}, body);
   }
 };
@@ -43,21 +50,21 @@ const addTask = function(event) {
     const todoId = detail.getAttribute('id');
     const inputValue = document.querySelector('#addMoreTask').value;
     if (inputValue === '') return;
-    const body = `todoId=${todoId}&item=${inputValue}`;
+    const body = {todoId, item: inputValue};
     sendXmlHttpRequest('/addItem', 'POST', showTodoItems, {todoId}, body);
   }
 };
 
 const deleteTodo = function() {
   const todoId = event.target.parentElement.id;
-  const body = `todoId=${todoId}`;
+  const body = {todoId};
   sendXmlHttpRequest('/deleteTodo', 'POST', showTodoLists, null, body);
 };
 
 const deleteItem = function() {
-  const ItemId = event.target.parentElement.id;
+  const itemId = event.target.parentElement.id;
   const todoId = document.querySelector('.todoDetail').getAttribute('id');
-  const body = `itemId=${ItemId}&todoId=${todoId}`;
+  const body = {itemId, todoId};
   sendXmlHttpRequest('/deleteItem', 'POST', showTodoItems, {todoId}, body);
 };
 
@@ -67,7 +74,7 @@ const updateIsDoneStatus = function() {
   const checkedItem = [...checkboxes].filter(checkbox => checkbox.checked);
   const ids = checkedItem.map(box => box.parentElement.id);
   if (ids) {
-    const body = `ids=${ids}&todoId=${todoId}`;
+    const body = {ids, todoId};
     sendXmlHttpRequest('/updateStatus', 'POST', removeDetail, null, body);
   }
   sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);

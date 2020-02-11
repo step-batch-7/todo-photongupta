@@ -41,15 +41,13 @@ const addInputBox = function(event) {
   }
 };
 
-const showTodoItems = function(resText, args) {
+const showTodoItems = function(todoLists, args) {
   const detail = document.querySelector('.todoDetail');
   detail.id = args.todoId;
   detail.style.transform = 'scale(1)';
   const form = document.querySelector('.form');
   form.style.transform = 'scale(0)';
-  const todoDetail = JSON.parse(resText)
-    .filter(todo => todo.id === +args.todoId)
-    .flat();
+  const todoDetail = todoLists.filter(todo => todo.id === +args.todoId).flat();
   const todoItems = todoDetail[0].todoItems.map(task => itemsInHtml(task));
   detail.innerHTML = todoDetailInHtml(todoDetail, todoItems);
 };
@@ -83,9 +81,8 @@ const getHtmlForTitle = function(todo) {
   </div>`;
 };
 
-const showTodoLists = function(resText) {
+const showTodoLists = function(todoLists) {
   removeTitleBox();
-  const todoLists = JSON.parse(resText);
   const titlesInHtml = todoLists.map(getHtmlForTitle).join('');
   appendChildTo(titlesInHtml, {parent: '.todo', child: 'div'});
 };

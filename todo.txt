@@ -112,7 +112,7 @@ tree
 
 ✅19=>handle client side errors
 
-=> change the content type into application/json
+✅20=> change the content type into application/json
 
 => write integration test
 
