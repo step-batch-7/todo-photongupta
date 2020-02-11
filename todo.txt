@@ -96,9 +96,9 @@ tree
 
 ✅11=>separate the parseBody into functions according to  the responsibility
 
-=>change the template into home.html
+✅12=>replace all the repeating code in classes
 
-=>replace all the repeating code in classes
+=>change the template into home.html
 
 =>extract frontend code into separate files based on responsibility
 
@@ -109,7 +109,6 @@ tree
 => make a function to generate id for todo and todo items
 
 => ask for confirmation for deleting items and todoList
-
 
 
 
