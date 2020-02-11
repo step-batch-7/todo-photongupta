@@ -100,7 +100,7 @@ tree
 
 ✅13=>extract frontend code into separate files based on responsibility
 
-=>make a generic function for xmlhttprequest
+✅14=>make a generic function for xmlhttprequest
 
 =>change the template into home.html
 

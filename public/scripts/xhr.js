@@ -41,32 +41,20 @@ const removeInputBox = function() {
   form.removeChild(form.lastChild);
 };
 
-const getXmlHttpRequest = function(url, callback, args) {
+const sendXmlHttpRequest = function(url, method, callback, args, body) {
   const xhr = new XMLHttpRequest();
   xhr.onload = function() {
     if (this.status === 200) {
       callback(this.responseText, args);
     }
   };
-  xhr.open('GET', url, true);
-  xhr.send();
-};
-
-const postXmlHttpRequest = function(url, body, callback, args) {
-  const xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    if (this.status === 200) {
-      callback(args);
-    }
-  };
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.open(method, url, true);
   xhr.send(body);
 };
 
 const showTasks = function() {
   const todoId = event.target.parentElement.id;
-  getXmlHttpRequest('/todoList.json', showTodoItems, {todoId});
+  sendXmlHttpRequest('/todoList.json', 'GET', showTodoItems, {todoId});
 };
 
 const editTitle = function() {
@@ -75,10 +63,16 @@ const editTitle = function() {
     const newTitle = event.target.innerText;
     const todoId = event.target.parentElement.id;
     const body = `todoId=${todoId}&newTitle=${newTitle}`;
-    postXmlHttpRequest('/editTitle', body, requestForScreenContent, {
-      url: '/showList.html',
-      callback: updateTodoList
-    });
+    sendXmlHttpRequest(
+      '/editTitle',
+      'POST',
+      requestForScreenContent,
+      {
+        url: '/showList.html',
+        callback: updateTodoList
+      },
+      body
+    );
   }
 };
 
@@ -88,9 +82,8 @@ const editTask = function() {
     const newTask = event.target.innerText;
     const taskId = event.target.parentElement.id;
     const todoId = document.querySelector('.todoDetail').getAttribute('id');
-    console.log(newTask, taskId, todoId);
     const body = `taskId=${taskId}&newTask=${newTask}&todoId=${todoId}`;
-    postXmlHttpRequest('/editTask', body, showTodoItems, {todoId});
+    sendXmlHttpRequest('/editTask', 'POST', showTodoItems, {todoId}, body);
   }
 };
 
@@ -101,24 +94,30 @@ const addTask = function(event) {
     const inputValue = document.querySelector('#addMoreTask').value;
     if (inputValue === '') return;
     const body = `todoId=${todoId}&item=${inputValue}`;
-    postXmlHttpRequest('/addItem', body, updateItemList, {todoId});
+    sendXmlHttpRequest('/addItem', 'POST', updateItemList, {todoId}, body);
   }
 };
 
 const deleteTodo = function() {
   const todoId = event.target.parentElement.id;
   const body = `todoId=${todoId}`;
-  postXmlHttpRequest('/deleteTodo', body, requestForScreenContent, {
-    url: '/showList.html',
-    callback: updateTodoList
-  });
+  sendXmlHttpRequest(
+    '/deleteTodo',
+    'POST',
+    requestForScreenContent,
+    {
+      url: '/showList.html',
+      callback: updateTodoList
+    },
+    body
+  );
 };
 
 const deleteItem = function() {
   const ItemId = event.target.parentElement.id;
   const todoId = document.querySelector('.todoDetail').getAttribute('id');
   const body = `itemId=${ItemId}&todoId=${todoId}`;
-  postXmlHttpRequest('/deleteItem', body, updateItemList, {todoId});
+  sendXmlHttpRequest('/deleteItem', 'POST', updateItemList, {todoId}, body);
 };
 
 const updateIsDoneStatus = function() {
@@ -127,23 +126,23 @@ const updateIsDoneStatus = function() {
   const checkedItem = [...checkboxes].filter(checkbox => checkbox.checked);
   const ids = checkedItem.map(box => box.parentElement.id);
   const body = `ids=${ids}&todoId=${todoId}`;
-  postXmlHttpRequest('/updateStatus', body, removeDetail);
+  sendXmlHttpRequest('/updateStatus', 'POST', removeDetail, null, body);
 };
 
 const requestForScreenContent = function(args) {
-  getXmlHttpRequest(args.url, args.callback);
+  sendXmlHttpRequest(args.url, 'GET', args.callback);
 };
 
 const updateTodoList = function(resText) {
   document.getElementById('todo').innerHTML = resText;
 };
 
-const updateItemList = function({todoId}) {
-  getXmlHttpRequest('/todoList.json', showTodoItems, {todoId});
+const updateItemList = function(resText, {todoId}) {
+  sendXmlHttpRequest('/todoList.json', 'GET', showTodoItems, {todoId});
 };
 
 const removeDetail = function() {
-  getXmlHttpRequest('/showList.html', updateTodoList);
+  sendXmlHttpRequest('/showList.html', 'GET', updateTodoList);
   const detail = document.querySelector('.todoDetail');
   detail.style.transform = 'scale(0)';
 };
