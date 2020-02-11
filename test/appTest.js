@@ -20,7 +20,7 @@ const content = JSON.stringify([
   }
 ]);
 fs.writeFileSync(fakeDataBase, content, 'utf8');
-const {app} = require('../lib/handler');
+const {app} = require('../lib/routes');
 
 describe('GET /', function() {
   it('test for get request with file path /', function(done) {
@@ -41,10 +41,10 @@ describe('GET /bad', function() {
   });
 });
 
-describe('GET /showList.html', function() {
-  it('test for get request with file path /showList.html', function(done) {
+describe('GET /home.html', function() {
+  it('test for get request with file path /home.html', function(done) {
     request(app.serve.bind(app))
-      .get('/showList.html')
+      .get('/home.html')
       .set('Accept', '*/*')
       .expect('Content-Type', 'text/html')
       .expect(200, done);
@@ -64,10 +64,10 @@ describe('GET /todoList.json', function() {
 describe('POST /addTodo.html', function() {
   it('test  for post request with url /addTodo.html', function(done) {
     request(app.serve.bind(app))
-      .post('/addTodo.html')
+      .post('/home.html')
       .set('Accept', '*/*')
       .send(stringify({title: 'go for break', todoItem: 'drink milk'}))
-      .expect('Location', '/showList.html')
+      .expect('Location', '/home.html')
       .expect(302, done);
   });
 });
@@ -76,7 +76,8 @@ describe('POST /addItem', function() {
   it('test  for post request with url /addItem', function(done) {
     request(app.serve.bind(app))
       .post('/addItem')
-      .send(stringify({todoId: 123, item: 'drink juice'}))
+      .send(JSON.stringify({todoId: 123, item: 'drink juice'}))
+      .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
       .expect(200, done);
   });
@@ -86,8 +87,9 @@ describe('POST /updateStatus', function() {
   it('test  for post request with url /updateStatus', function(done) {
     request(app.serve.bind(app))
       .post('/updateStatus')
+      .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
-      .send(stringify({todoId: 124, ids: '1, 2'}))
+      .send(JSON.stringify({todoId: 124, ids: ['1', '2']}))
       .expect(200, done);
   });
 });
@@ -97,7 +99,8 @@ describe('POST /deleteTodo', function() {
     request(app.serve.bind(app))
       .post('/deleteTodo')
       .set('Accept', '*/*')
-      .send(stringify({todoId: 123}))
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({todoId: 123}))
       .expect(200, done);
   });
 });
@@ -107,17 +110,9 @@ describe('POST /deleteItem', function() {
     request(app.serve.bind(app))
       .post('/deleteItem')
       .set('Accept', '*/*')
-      .send(stringify({todoId: 124, itemId: 1}))
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({todoId: 124, itemId: 1}))
       .expect(200, done);
-  });
-});
-
-describe('POST /bad', function() {
-  it('test  for post request with file not existing', function(done) {
-    request(app.serve.bind(app))
-      .post('/bad')
-      .set('Accept', '*/*')
-      .expect(404, done);
   });
 });
 
@@ -126,7 +121,7 @@ describe('PUT /', function() {
     request(app.serve.bind(app))
       .put('/')
       .set('Accept', '*/*')
-      .expect(400, done);
+      .expect(405, done);
   });
 });
 
