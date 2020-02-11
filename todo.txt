@@ -98,13 +98,13 @@ tree
 
 ✅12=>replace all the repeating code in classes
 
-=>change the template into home.html
-
-=>extract frontend code into separate files based on responsibility
-
-=>handle client side errors
+✅13=>extract frontend code into separate files based on responsibility
 
 =>make a generic function for xmlhttprequest
+
+=>change the template into home.html
+
+=>handle client side errors
 
 => make a function to generate id for todo and todo items
 
