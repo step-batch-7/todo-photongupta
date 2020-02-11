@@ -3,6 +3,8 @@ const sendXmlHttpRequest = function(url, method, callback, args, body) {
   xhr.onload = function() {
     if (this.status === 200) {
       callback(this.responseText, args);
+    } else {
+      alert('something went wrong');
     }
   };
   xhr.open(method, url, true);

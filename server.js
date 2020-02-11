@@ -1,7 +1,7 @@
 'use strict';
 
 const http = require('http');
-const {app} = require('./lib/handler');
+const {app} = require('./lib/routes');
 const defaultPort = 5000;
 
 const main = function(port = defaultPort) {

@@ -110,7 +110,7 @@ tree
 
 ✅18=>rename the file
 
-=>handle client side errors
+✅19=>handle client side errors
 
 => ask for confirmation for deleting items and todoList
 
