@@ -66,8 +66,10 @@ const updateIsDoneStatus = function() {
   const todoId = document.querySelector('.todoDetail').getAttribute('id');
   const checkedItem = [...checkboxes].filter(checkbox => checkbox.checked);
   const ids = checkedItem.map(box => box.parentElement.id);
-  const body = `ids=${ids}&todoId=${todoId}`;
-  sendXmlHttpRequest('/updateStatus', 'POST', removeDetail, null, body);
+  if (ids) {
+    const body = `ids=${ids}&todoId=${todoId}`;
+    sendXmlHttpRequest('/updateStatus', 'POST', removeDetail, null, body);
+  }
   sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);
 };
 

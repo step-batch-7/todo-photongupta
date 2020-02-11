@@ -112,11 +112,13 @@ tree
 
 ✅19=>handle client side errors
 
-=> ask for confirmation for deleting items and todoList
+=> change the content type into application/json
+
+=> write integration test
 
 => write unit test 
 
-=> write integration test
+=> ask for confirmation for deleting items and todoList
 
 
 
