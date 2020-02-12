@@ -114,6 +114,10 @@ tree
 
 ✅20=> change the content type into application/json
 
+✅21=>provide validation for bad request
+
+=>inject sendResponse method into the response
+
 => write integration test
 
 => write unit test 

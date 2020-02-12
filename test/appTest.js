@@ -116,6 +116,15 @@ describe('POST /deleteItem', function() {
   });
 });
 
+describe('POST /bad', function() {
+  it('test  for post request with file not existing', function(done) {
+    request(app.serve.bind(app))
+      .post('/bad')
+      .set('Accept', '*/*')
+      .expect(404, done);
+  });
+});
+
 describe('PUT /', function() {
   it('test for put request', function(done) {
     request(app.serve.bind(app))
