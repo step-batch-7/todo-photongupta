@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "export dataBasePath=/Users/step29/my_work/html/todoApp/test/todoLists.json;nyc mocha",
+    "test": "export dataBasePath=/Users/step29/my_work/html/todoApp/test/todoLists.json;nyc mocha ",
     "start": "export dataBasePath=/Users/step29/my_work/html/todoApp/dataBase/todoList.json;nodemon server.js"
   },
   "repository": {

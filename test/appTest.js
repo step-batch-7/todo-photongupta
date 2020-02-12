@@ -10,7 +10,7 @@ const content = JSON.stringify([
     id: 124,
     todoItems: [
       {item: 'write Todo', id: 1, isDone: true},
-      {item: 'write Todo', id: 2, isDone: false}
+      {item: 'write Todo', id: 2, isDone: true}
     ]
   },
   {
@@ -89,6 +89,17 @@ describe('POST /updateStatus', function() {
       .post('/updateStatus')
       .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
+      .send(JSON.stringify({todoId: 124, ids: ['7']}))
+      .expect(200, done);
+  });
+});
+
+describe('POST /updateStatus', function() {
+  it('test  for post request with url /updateStatus', function(done) {
+    request(app.serve.bind(app))
+      .post('/updateStatus')
+      .set('Content-Type', 'application/json')
+      .set('Accept', '*/*')
       .send(JSON.stringify({todoId: 124, ids: ['1', '2']}))
       .expect(200, done);
   });
@@ -116,10 +127,32 @@ describe('POST /deleteItem', function() {
   });
 });
 
-describe('POST /bad', function() {
+describe('POST /editTask', function() {
+  it('test  for post request with url /editTask', function(done) {
+    request(app.serve.bind(app))
+      .post('/editTask')
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({todoId: 124, newTask: 'go to home', taskId: 2}))
+      .expect(200, done);
+  });
+});
+
+describe('POST /editTitle', function() {
+  it('test  for post request with url /editTitle', function(done) {
+    request(app.serve.bind(app))
+      .post('/editTitle')
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({todoId: 124, newTitle: 'market'}))
+      .expect(200, done);
+  });
+});
+
+describe('POST /notFound', function() {
   it('test  for post request with file not existing', function(done) {
     request(app.serve.bind(app))
-      .post('/bad')
+      .post('/notFound')
       .set('Accept', '*/*')
       .expect(404, done);
   });
@@ -131,6 +164,17 @@ describe('PUT /', function() {
       .put('/')
       .set('Accept', '*/*')
       .expect(405, done);
+  });
+});
+
+describe('POST /badRequest', function() {
+  it('test for post request for editTitle with wrong args', function(done) {
+    request(app.serve.bind(app))
+      .post('/editTitle')
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/json')
+      .send(JSON.stringify({id: 124, title: 'market'}))
+      .expect(400, done);
   });
 });
 
