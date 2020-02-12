@@ -120,6 +120,8 @@ tree
 
 ✅23=> write integration test
 
+✅24=> a middleware for badRequest
+
 => write unit test 
 
 => ask for confirmation for deleting items and todoList
