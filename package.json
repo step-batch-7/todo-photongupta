@@ -28,6 +28,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "xmlhttprequest": "^1.8.0"
   }
 }
