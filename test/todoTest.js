@@ -33,18 +33,4 @@ describe('Todo', function() {
       assert.strictEqual(todo.updateStatus([1, 2]), 1);
     });
   });
-
-  describe('editTask', function() {
-    it('should give true when the task is existing', function() {
-      const todo = new Todo({title: 'homeWork', id: 1});
-      todo.addItems(['maths']);
-      assert.isTrue(todo.editTask('english', 1));
-    });
-
-    it('should give false when the task is not existing', function() {
-      const todo = new Todo({title: 'homeWork', id: 1});
-      todo.addItems(['maths']);
-      assert.isFalse(todo.editTask('english', 2));
-    });
-  });
 });
