@@ -130,7 +130,7 @@ tree
 
 ✅28=>design the login page
 
-=>design the signUp page
+✅29=>design the signUp page
 
 => ask for confirmation for deleting items and todoList
 
