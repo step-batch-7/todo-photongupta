@@ -124,9 +124,9 @@ tree
 
 ✅25=>modify constructor of data store class
 
-=>return from all the methods of every class
+✅26=>return from all the methods of every class
 
-=> write unit test 
+✅27=> write unit test 
 
 => ask for confirmation for deleting items and todoList
 
