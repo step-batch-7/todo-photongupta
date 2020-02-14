@@ -3,7 +3,8 @@ const sendXmlHttpRequest = function(url, method, callback, args, body) {
   xhr.onload = function() {
     if (this.status === 200) {
       let todoLists = this.responseText;
-      if (this.getResponseHeader('content-type') === 'application/json') {
+      const contentType = this.getResponseHeader('content-type');
+      if (contentType === 'application/json; charset=utf-8') {
         todoLists = JSON.parse(todoLists);
       }
       callback(todoLists, args);
