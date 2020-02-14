@@ -132,6 +132,8 @@ tree
 
 ✅29=>design the signUp page
 
+✅30=>Register New User
+
 => ask for confirmation for deleting items and todoList
 
 

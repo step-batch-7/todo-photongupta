@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SignUp Page</title>
     <link rel="stylesheet" href="./css/loginAndRegistration.css" />
+    <script src="./scripts/signUp.js"></script>
   </head>
   <body>
     <div class="form">
-      <form>
+      <form method="POST" action="/registerUser">
         <input
           type="text"
-          name="name"
+          name="userName"
           autofocus
           autocomplete="off"
           placeholder="Name"
