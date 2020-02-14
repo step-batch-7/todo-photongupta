@@ -1,0 +1,36 @@
+body {
+  width: 100vw;
+}
+
+.form {
+  text-align: center;
+  margin: auto;
+  margin-top: 10%;
+  width: 25vw;
+  height: 50vh;
+  border: 1px solid black;
+}
+
+.form > form {
+  margin: auto;
+  margin-top: 20%;
+}
+
+input {
+  width: 220px;
+  height: 33px;
+  outline: none;
+}
+
+button[type='submit'] {
+  width: 220px;
+  height: 40px;
+  border-radius: 8px;
+  outline: none;
+  background-color: rgb(221, 214, 214);
+}
+
+.loginIcon {
+  width: 120px;
+  height: 120px;
+}
