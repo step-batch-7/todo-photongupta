@@ -20,8 +20,7 @@ const hasSameId = function(todo) {
   return todo.id === +this.getAttribute('id');
 };
 
-const searchItem = function(resText, {todos, input}) {
-  const todoList = JSON.parse(resText);
+const searchItem = function(todoList, {todos, input}) {
   const requiredTodo = todoList.filter(todo => {
     const requiredItems = todo.todoItems.filter(task =>
       task.item.toLowerCase().includes(input.toLowerCase())
