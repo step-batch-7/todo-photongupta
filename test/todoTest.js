@@ -26,17 +26,17 @@ describe('Todo', function() {
     });
   });
 
-  describe('updateStatus', function() {
-    it('should give true when the items are present', function() {
+  describe('toggleStatus', function() {
+    it('should give true when the item is present', function() {
       const todo = new Todo({title: 'homeWork', id: 1});
       todo.addItems(['maths']);
-      assert.isTrue(todo.updateStatus([1]));
+      assert.isTrue(todo.toggleStatus(1));
     });
 
-    it('should give false when the items are not present', function() {
+    it('should give false when the item is not present', function() {
       const todo = new Todo({title: 'homeWork', id: 1});
       todo.addItems(['maths']);
-      assert.isFalse(todo.updateStatus([1, 2]));
+      assert.isUndefined(todo.toggleStatus(2));
     });
   });
 

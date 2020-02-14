@@ -89,7 +89,7 @@ describe('POST /updateStatus', function() {
       .post('/updateStatus')
       .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
-      .send(JSON.stringify({todoId: 124, ids: ['7']}))
+      .send(JSON.stringify({todoId: 124, taskId: 1}))
       .expect(200, done);
   });
 });
@@ -100,7 +100,7 @@ describe('POST /updateStatus', function() {
       .post('/updateStatus')
       .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
-      .send(JSON.stringify({todoId: 124, ids: ['1', '2']}))
+      .send(JSON.stringify({todoId: 124, taskId: 90}))
       .expect(200, done);
   });
 });

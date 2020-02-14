@@ -10,7 +10,7 @@ const itemsInHtml = function(task) {
   const isChecked = isDone ? 'checked' : '';
   return `
    <div class="item" id="${id}">
-       <input type="checkbox" name="isDone" editable="true" class="TickItem" ${isChecked} />
+       <input type="checkbox" name="isDone" editable="true" class="TickItem" ${isChecked} onclick="updateIsDoneStatus()"/>
        <p class="task" contenteditable="true" onkeyDown="editTask()">${item}</p>
        <img src="../img/minus.png" class="close" onclick="deleteItem()" />
    </div><br/>`;
@@ -24,7 +24,6 @@ const todoDetailInHtml = function(resText, todoItems) {
     <input name="item" class="input" id="addMoreTask" autocomplete="off" required type="text" onkeydown="addTask(event)" placeholder="tasks..." ></input >
     <img src="../img/plus.png" alt="add" class="icon" onclick="addTask(event)" id="__id__"/><br><br>
     <img src="../img/back.png" class="icon" onclick="removeDetail()">
-    <img src="../img/tick.png" class="icon" onclick="updateIsDoneStatus()">
   </div>`;
 };
 

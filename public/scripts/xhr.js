@@ -40,7 +40,6 @@ const editTask = function() {
     const taskId = event.target.parentElement.id;
     const todoId = document.querySelector('.todoDetail').getAttribute('id');
     const body = {todoId, newTask, taskId};
-
     sendXmlHttpRequest('/editTask', 'POST', showTodoItems, {todoId}, body);
   }
 };
@@ -70,15 +69,11 @@ const deleteItem = function() {
 };
 
 const updateIsDoneStatus = function() {
-  const checkboxes = document.getElementsByTagName('input');
-  const todoId = document.querySelector('.todoDetail').getAttribute('id');
-  const checkedItem = [...checkboxes].filter(checkbox => checkbox.checked);
-  const ids = checkedItem.map(box => box.parentElement.id);
-  if (ids) {
-    const body = {ids, todoId};
-    sendXmlHttpRequest('/updateStatus', 'POST', removeDetail, null, body);
-  }
-  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);
+  const taskId = event.target.parentElement.id;
+  const todoId = document.querySelector('.todoDetail').id;
+  const body = {todoId, taskId};
+  sendXmlHttpRequest('/updateStatus', 'POST', showTodoItems, {todoId}, body);
+  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
 };
 
 const main = function() {

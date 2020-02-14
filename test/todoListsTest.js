@@ -111,7 +111,7 @@ describe('TodoLists', function() {
       const todo = new Todo({title: 'maths', id: 1});
       todo.addItems(['hello']);
       todoList.addTodo(todo);
-      assert.isTrue(todoList.updateIsDoneStatus([1], 1));
+      assert.isTrue(todoList.toggleStatus([1], 1));
     });
 
     it('should give falsy value when todo or task is not present', function() {
@@ -119,7 +119,7 @@ describe('TodoLists', function() {
       const todo = new Todo({title: 'maths', id: 1});
       todo.addItems(['hello']);
       todoList.addTodo(todo);
-      assert.isUndefined(todoList.updateIsDoneStatus([55], 4));
+      assert.isUndefined(todoList.toggleStatus([55], 4));
     });
   });
 
