@@ -6,25 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Login Page</title>
     <link rel="stylesheet" href="./css/loginAndRegistration.css" />
+    <script src="./scripts/signUp.js"></script>
   </head>
   <body>
     <div class="form">
-      <form>
-        <img src="img/admin.png" alt="" class="loginIcon" /><br />
-        <input
-          type="text"
-          name="userName"
-          autofocus
-          autocomplete="off"
-          placeholder="User Name"
-        /><br /><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-        /><br /><br /><br />
-        <button type="submit">LOGIN</button><br /><br />
-      </form>
+      <img src="img/admin.png" alt="" class="loginIcon" /><br />
+      <p id="loginMsg"></p>
+      <input
+        type="text"
+        name="userName"
+        id="userName"
+        autofocus
+        autocomplete="off"
+        placeholder="User Name"
+      /><br /><br />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+      /><br /><br /><br />
+      <button onclick="validateLogin()">LOGIN</button><br /><br />
       <a href="./signUp.html">Sign Up</a>
     </div>
   </body>

@@ -134,7 +134,11 @@ tree
 
 ✅30=>Register New User
 
-=>don't allow to register if the user is already existing
+✅31=>don't allow to register if the user is already existing
+
+✅32=>Allow the registered user to login
+
+✅33=>Give error msg if the user is not existing while login
 
 => ask for confirmation for deleting items and todoList
 

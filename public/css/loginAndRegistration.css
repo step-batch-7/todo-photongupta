@@ -22,7 +22,7 @@ input {
   outline: none;
 }
 
-button[type='submit'] {
+button {
   width: 220px;
   height: 40px;
   border-radius: 8px;

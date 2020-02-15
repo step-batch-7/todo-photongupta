@@ -76,8 +76,8 @@ const updateIsDoneStatus = function() {
   sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
 };
 
-// const main = function() {
-//   sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);
-// };
+const main = function() {
+  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);
+};
 
-// window.onload = main;
+window.onload = main;
