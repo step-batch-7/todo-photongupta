@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SignUp Page</title>
     <link rel="stylesheet" href="./css/loginAndRegistration.css" />
-    <script src="./scripts/xhr.js"></script>
     <script src="./scripts/signUp.js"></script>
   </head>
   <body>
@@ -20,25 +19,30 @@
           autocomplete="off"
           placeholder="Name"
           onblur="isUserExists()"
+          required
         /><br /><br />
         <input
-          type="text"
+          type="email"
           name="email"
           autofocus
           autocomplete="off"
           placeholder="Email"
+          required
         /><br /><br />
         <input
-          type="text"
+          type="tel"
           name="phone"
           autofocus
+          pattern="[0-9]{10}"
           autocomplete="off"
           placeholder="Phone Number"
+          required
         /><br /><br />
         <input
           type="password"
           name="password"
           placeholder="Password"
+          required
         /><br /><br /><br />
         <button type="submit">REGISTER</button><br /><br />
       </form>

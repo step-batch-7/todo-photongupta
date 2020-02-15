@@ -140,6 +140,8 @@ tree
 
 ✅33=>Give error msg if the user is not existing while login
 
+✅34=>add validation for signUp
+
 => ask for confirmation for deleting items and todoList
 
 
