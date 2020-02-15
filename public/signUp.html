@@ -6,17 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SignUp Page</title>
     <link rel="stylesheet" href="./css/loginAndRegistration.css" />
+    <script src="./scripts/xhr.js"></script>
     <script src="./scripts/signUp.js"></script>
   </head>
   <body>
     <div class="form">
       <form method="POST" action="/registerUser">
+        <p id="userName"></p>
         <input
           type="text"
           name="userName"
           autofocus
           autocomplete="off"
           placeholder="Name"
+          onblur="isUserExists()"
         /><br /><br />
         <input
           type="text"

@@ -134,6 +134,8 @@ tree
 
 ✅30=>Register New User
 
+=>don't allow to register if the user is already existing
+
 => ask for confirmation for deleting items and todoList
 
 
