@@ -142,6 +142,8 @@ tree
 
 ✅34=>add validation for signUp
 
+=>use locals 
+
 => ask for confirmation for deleting items and todoList
 
 
