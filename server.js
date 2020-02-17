@@ -1,13 +1,14 @@
 'use strict';
 
-const {writeFileSync} = require('fs');
+const { writeFileSync } = require('fs');
+require('./config')();
 const TodoStore = require('./lib/todoStore');
 const UserStore = require('./lib/userStore');
 const USER_STORE = './dataBase/userCredentials.json';
 const TODO_STORE = './dataBase/todoList.json';
 const todoLists = require(TODO_STORE);
 const userCredentials = require(USER_STORE);
-const {app} = require('./lib/routes');
+const { app } = require('./lib/routes');
 const SessionManager = require('./lib/sessionManger');
 
 const defaultPort = 5000;
