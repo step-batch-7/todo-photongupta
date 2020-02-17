@@ -1,32 +1,12 @@
-const fs = require('fs');
 const request = require('supertest');
-const {stringify} = require('querystring');
-const {config} = require('../config');
-const fakeDataBase = config.path;
-
-const content = JSON.stringify([
-  {
-    title: 'complete Todo',
-    id: 124,
-    todoItems: [
-      {item: 'write Todo', id: 1, isDone: true},
-      {item: 'write Todo', id: 2, isDone: true}
-    ]
-  },
-  {
-    title: 'shopping',
-    id: 123,
-    todoItems: [{item: 'buy shoe', id: 1, isDone: true}]
-  }
-]);
-fs.writeFileSync(fakeDataBase, content, 'utf8');
 const {app} = require('../lib/routes');
 
-describe('GET /', function() {
+describe.only('GET /', function() {
   it('should give the index.html page when the url is /', function(done) {
     request(app)
       .get('/')
       .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=123')
       .expect('Content-Type', 'text/html; charset=UTF-8')
       .expect(200, done);
   });

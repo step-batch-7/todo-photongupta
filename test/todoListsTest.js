@@ -41,9 +41,9 @@ describe('TodoLists', function() {
   describe('deleteItem', function() {
     it('should delete the item when todo is present', function() {
       const todoList = new TodoLists();
-      const todo = new Todo({title: 'maths', id: 1});
-      todo.addItems(['do homeworks']);
+      const todo = {title: 'maths', id: 1, todoItems: []};
       todoList.addTodo(todo);
+      todoList.addItem('do homeworks', 1);
       assert.deepStrictEqual(todoList.deleteItem(1, 1), []);
     });
 
@@ -51,7 +51,7 @@ describe('TodoLists', function() {
       const todoList = new TodoLists();
       const todo = new Todo({title: 'maths', id: 1});
       todoList.addTodo(todo);
-      assert.isUndefined(todoList.deleteItem('homeWork', 55));
+      assert.isUndefined(todoList.deleteItem(1, 55));
     });
   });
 
@@ -90,9 +90,9 @@ describe('TodoLists', function() {
   describe('editTask', function() {
     it('should rename the item when todo and task is present', function() {
       const todoList = new TodoLists();
-      const todo = new Todo({title: 'maths', id: 1});
-      todo.addItems(['hello']);
+      const todo = {title: 'maths', id: 1};
       todoList.addTodo(todo);
+      todoList.addItem('hello', 1);
       assert.deepStrictEqual(todoList.editTask(1, 'english', 1), 'english');
     });
 
@@ -108,9 +108,9 @@ describe('TodoLists', function() {
   describe('updateIsDoneStatus', function() {
     it('should rename the item when todo and task is present', function() {
       const todoList = new TodoLists();
-      const todo = new Todo({title: 'maths', id: 1});
-      todo.addItems(['hello']);
+      const todo = {title: 'maths', id: 1};
       todoList.addTodo(todo);
+      todoList.addItem('hello', 1);
       assert.isTrue(todoList.toggleStatus([1], 1));
     });
 
@@ -125,26 +125,16 @@ describe('TodoLists', function() {
 
   describe('static load', function() {
     it('should give the instance of todoLists class', function() {
-      const todoLists = new TodoLists();
-      const todo = new Todo({title: 'maths', id: 1});
-      todo.addItems(['homework']);
-      todoLists.addTodo(todo);
       assert.instanceOf(
-        TodoLists.load(
-          JSON.stringify([
-            {
-              title: 'maths',
-              id: 1,
-              todoItems: [{item: 'homework', id: 1, isDone: false}]
-            }
-          ])
-        ),
+        TodoLists.load([
+          {
+            title: 'maths',
+            id: 1,
+            todoItems: [{item: 'homework', id: 1, isDone: false}]
+          }
+        ]),
         TodoLists
       );
-    });
-
-    it('should give the instance of todoLists class when the content is not given', function() {
-      assert.instanceOf(TodoLists.load(), TodoLists);
     });
   });
 });
