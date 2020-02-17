@@ -23,36 +23,30 @@ fs.writeFileSync(fakeDataBase, content, 'utf8');
 const {app} = require('../lib/routes');
 
 describe('GET /', function() {
-  it('test for get request with file path /', function(done) {
+  it('should give the index.html page when the url is /', function(done) {
     request(app)
       .get('/')
       .set('Accept', '*/*')
       .expect('Content-Type', 'text/html; charset=UTF-8')
       .expect(200, done);
   });
-});
 
-describe('GET /bad', function() {
-  it('test  for get request with file not existing', function(done) {
+  it('should give 404 when the url is not existing', function(done) {
     request(app)
       .get('/bad')
       .set('Accept', '*/*')
       .expect(404, done);
   });
-});
 
-describe('GET /home.html', function() {
-  it('test for get request with file path /home.html', function(done) {
+  it('should give the home.html when the url is /home.html', function(done) {
     request(app)
       .get('/home.html')
       .set('Accept', '*/*')
       .expect('Content-Type', 'text/html; charset=UTF-8')
       .expect(200, done);
   });
-});
 
-describe('GET /todoList.json', function() {
-  it('test for get request with file path /todoList.json', function(done) {
+  it('should give all the todo when the url is /todoList.json', function(done) {
     request(app)
       .get('/todoList.json')
       .set('Accept', '*/*')
@@ -61,8 +55,8 @@ describe('GET /todoList.json', function() {
   });
 });
 
-describe('POST /addTodo.html', function() {
-  it('test  for post request with url /addTodo.html', function(done) {
+describe('POST ', function() {
+  it('should add the todo when the url /addTodo.html', function(done) {
     request(app)
       .post('/home.html')
       .set('Accept', '*/*')
@@ -70,10 +64,8 @@ describe('POST /addTodo.html', function() {
       .expect('Location', '/home.html')
       .expect(302, done);
   });
-});
 
-describe('POST /addItem', function() {
-  it('test  for post request with url /addItem', function(done) {
+  it('should add the item when the url /addItem', function(done) {
     request(app)
       .post('/addItem')
       .send(JSON.stringify({todoId: 123, item: 'drink juice'}))
@@ -81,10 +73,8 @@ describe('POST /addItem', function() {
       .set('Accept', '*/*')
       .expect(200, done);
   });
-});
 
-describe('POST /updateStatus', function() {
-  it('test  for post request with url /updateStatus', function(done) {
+  it('should update the status when the url is /updateStatus', function(done) {
     request(app)
       .post('/updateStatus')
       .set('Content-Type', 'application/json')
@@ -92,9 +82,7 @@ describe('POST /updateStatus', function() {
       .send(JSON.stringify({todoId: 124, taskId: 1}))
       .expect(200, done);
   });
-});
 
-describe('POST /updateStatus', function() {
   it('test  for post request with url /updateStatus', function(done) {
     request(app)
       .post('/updateStatus')

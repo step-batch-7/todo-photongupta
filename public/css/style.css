@@ -14,6 +14,7 @@ h1 {
 p {
   margin-top: auto;
   margin-bottom: auto;
+  outline: none;
 }
 
 .titleHeading {
@@ -63,6 +64,11 @@ p {
 .showTitle:hover img {
   display: block;
   cursor: pointer;
+  pointer-events: auto;
+}
+
+.showTitle > img {
+  pointer-events: none;
 }
 
 .showTitle:hover {
@@ -153,19 +159,6 @@ p:hover {
   font-size: 1.5vw;
 }
 
-.option {
-  display: flex;
-  background-image: linear-gradient(rgb(220, 220, 220), rgb(250, 250, 250));
-  justify-content: space-evenly;
-  width: 8vw;
-  border-radius: 10px;
-}
-
-.option:hover {
-  cursor: pointer;
-  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
-}
-
 .tickItem {
   zoom: 1.8;
   margin-bottom: auto;
@@ -208,4 +201,39 @@ p:hover {
   background-image: linear-gradient(rgb(250, 250, 250), rgb(220, 220, 220));
   zoom: 1.5;
   margin-bottom: 1vw;
+}
+
+.popUp {
+  z-index: 10;
+  position: absolute;
+  margin-top: 10vw;
+  margin-left: 50vw;
+  transform: scale(0);
+  box-shadow: 0 1px 2px 0 black;
+  border-radius: 5px;
+  width: 20vw;
+  height: 10vw;
+  transition: 0.2s;
+  background-color: rgb(220, 220, 220);
+}
+
+button {
+  height: 30px;
+  width: 75px;
+  background-image: linear-gradient(rgb(240, 240, 240), rgb(250, 250, 250));
+}
+
+button:hover {
+  cursor: pointer;
+  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
+}
+
+.deleteTodoPopUp {
+  z-index: 10;
+  transform: scale(0);
+  box-shadow: 0 1px 2px 0 black;
+  border-radius: 5px;
+  width: 15vw;
+  height: 10vw;
+  transition: 0.2s;
 }

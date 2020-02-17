@@ -18,10 +18,14 @@ const itemsInHtml = function(task) {
 
 const todoDetailInHtml = function(resText, todoItems) {
   return `
-  <p class="titleHeading">${resText[0].title}</p><br>
+  <p class="titleHeading" contenteditable="true" onkeyDown="editTitle()">
+   ${resText[0].title}
+  </p><br>
   <div id="showItemList">
     <div class="showItems">${todoItems.join('')}</div><br>
-    <input name="item" class="input" id="addMoreTask" autocomplete="off" required type="text" onkeydown="addTask(event)" placeholder="tasks..." ></input >
+    <input name="item" class="input" id="addMoreTask" autofocus autocomplete="off" 
+    required type="text" onkeydown="addTask(event)" placeholder="tasks..." >
+    </input >
     <img src="../img/plus.png" alt="add" class="icon" onclick="addTask(event)" id="__id__"/><br><br>
     <img src="../img/back.png" class="icon" onclick="removeDetail()">
   </div>`;
@@ -40,20 +44,26 @@ const addInputBox = function(event) {
   }
 };
 
+const removeForm = function() {
+  const form = document.querySelector('.form');
+  form.style.transform = 'scale(0)';
+};
+
 const showTodoItems = function(todoLists, args) {
+  removeDeleteTodoPopUp();
+  removeForm();
   const detail = document.querySelector('.todoDetail');
   detail.id = args.todoId;
   detail.style.transform = 'scale(1)';
-  const form = document.querySelector('.form');
-  form.style.transform = 'scale(0)';
   const todoDetail = todoLists.filter(todo => todo.id === +args.todoId).flat();
   const todoItems = todoDetail[0].todoItems.map(task => itemsInHtml(task));
   detail.innerHTML = todoDetailInHtml(todoDetail, todoItems);
 };
 
 const showAddForm = function() {
-  const todoList = document.querySelector('.todoDetail');
-  todoList.style.transform = 'scale(0)';
+  removeDetail();
+  removeDeleteTodoPopUp();
+  document.querySelector('.input').focus();
   const form = document.querySelector('.form');
   form.style.transform = 'scale(1)';
 };
@@ -72,11 +82,11 @@ const removeTitleBox = function() {
 const getHtmlForTitle = function(todo) {
   const {id, title, todoItems} = todo;
   const leftItems = getLeftItems(todoItems);
-  return `<div class="showTitle"  id=${id} >
-  <p class="title"  contenteditable="true" onkeyDown="editTitle()">${title}&nbsp</p>
-  <p class="">${leftItems}&nbsp</p>
-  <img src="../img/minus.png" class="close" onclick="deleteTodo()"/>
-  <img src="../img/edit.png" class="close" onclick="showTasks()"/>
+  return `
+  <div class="showTitle"  id=${id} onclick="showTasks(event)" >
+    <p class="title" >${title}&nbsp</p>
+    <p class="">${leftItems}&nbsp</p>&nbsp&nbsp
+    <img src="../img/delete.svg" class="close" onclick="confirmationForDeleteTodo()"/>
   </div>`;
 };
 
@@ -89,4 +99,12 @@ const showTodoLists = function(todoLists) {
 const removeDetail = function() {
   const detail = document.querySelector('.todoDetail');
   detail.style.transform = 'scale(0)';
+};
+
+const confirmationForDeleteTodo = function() {
+  event.stopPropagation();
+  document.querySelector('.deleteTodoPopUp').style.transform = 'scale(1)';
+  document.querySelector('.deleteTodoPopUp').id = event.target.parentElement.id;
+  removeDetail();
+  removeForm();
 };

@@ -22,19 +22,37 @@
           <option value="todo">todo</option>
         </select>
         <img src="img/plus.png" class="icon" onclick="showAddForm()" />
-        <img
-          src="img/home.png"
-          class="icon"
-          onclick="location.href='index.html'"
-        />
+        <img src="img/logout.svg" class="icon" onclick="logoutConfirmation()" />
       </div>
     </div>
     <hr />
+
     <div class="todoHistory">
+      <div class="popUp">
+        <span
+          ><br /><img src="img/ques.svg" height="25" width="25" /> are you sure,
+          you want to logout</span
+        >
+        <br /><br />
+        <br />
+
+        <button id="button1" onclick="removePopUp()">cancel</button>&emsp;&emsp;
+        <button id="button2" onclick="logOut()">logout</button>
+      </div>
       <div class="todo">
         <h2>Your todos...</h2>
       </div>
       <div class="right">
+        <div class="deleteTodoPopUp">
+          <span>
+            <br />
+            <img src="img/ques.svg" height="25" width="25" />
+            are you sure, you want to delete todo
+          </span>
+          <br /><br /><br />
+          <button onclick="removeDeleteTodoPopUp()">cancel</button>&emsp;&emsp;
+          <button onclick="deleteTodo()">delete</button>
+        </div>
         <div class="todoDetail"></div>
         <div class="form">
           <form method="POST">
@@ -46,29 +64,18 @@
               required
               autocomplete="off"
               class="input"
+              onkeydown="addInputBox(event)"
               placeholder="add title here..."
             /><br /><br />
             <p for="todoItem" class="formHeading">Tasks</p>
             <div class="items">
-              <ul class="list">
-                <li>
-                  <input
-                    name="todoItem"
-                    class="input"
-                    autocomplete="off"
-                    required
-                    type="text"
-                    onkeydown="addInputBox(event)"
-                    placeholder="tasks..."
-                  /><br /><br />
-                </li>
-              </ul>
+              <ul class="list"></ul>
               <br />
             </div>
             <img
               src="img/back.png"
               class="icon"
-              onclick="location.href='showList.html'"
+              onclick="location.href='home.html'"
             />
             <img
               src="img/plus.png"

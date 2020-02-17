@@ -1,7 +1,8 @@
 'use strict';
 
 const {writeFileSync} = require('fs');
-const TodoLists = require('./lib/todoLists');
+const TodoStore = require('./lib/todoStore');
+const UserStore = require('./lib/userStore');
 const USER_STORE = './dataBase/userCredentials.json';
 const TODO_STORE = './dataBase/todoList.json';
 const todoLists = require(TODO_STORE);
@@ -12,11 +13,9 @@ const defaultPort = 5000;
 
 const main = function(port = defaultPort) {
   app.locals = {
-    todoLists: TodoLists.load(todoLists),
+    todoStore: TodoStore.initialize(todoLists, TODO_STORE, writeFileSync),
     writer: writeFileSync,
-    userCredentials,
-    USER_STORE,
-    TODO_STORE
+    userStore: UserStore.initialize(userCredentials, USER_STORE, writeFileSync)
   };
   app.listen(port);
 };

@@ -11,40 +11,40 @@
   <body>
     <div class="form">
       <form method="POST" action="/registerUser">
-        <p id="userName"></p>
-        <input
-          type="text"
-          name="userName"
-          autofocus
-          autocomplete="off"
-          placeholder="Name"
-          onblur="isUserExists()"
-          required
-        /><br /><br />
-        <input
-          type="email"
-          name="email"
-          autofocus
-          autocomplete="off"
-          placeholder="Email"
-          required
-        /><br /><br />
-        <input
-          type="tel"
-          name="phone"
-          autofocus
-          pattern="[0-9]{10}"
-          autocomplete="off"
-          placeholder="Phone Number"
-          required
-        /><br /><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        /><br /><br /><br />
-        <button type="submit">REGISTER</button><br /><br />
+        <div class="detail">
+          <p id="userName"></p>
+          <input
+            type="text"
+            name="userName"
+            autofocus
+            autocomplete="off"
+            placeholder="Name"
+            onblur="isUserExists()"
+            required
+          /><br /><br />
+          <input
+            type="email"
+            name="email"
+            autocomplete="off"
+            placeholder="Email"
+            required
+          /><br /><br />
+          <input
+            type="tel"
+            name="phone"
+            pattern="[0-9]{10}"
+            autocomplete="off"
+            placeholder="Phone Number"
+            required
+          /><br /><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          /><br /><br /><br />
+          <button type="submit">REGISTER</button><br /><br />
+        </div>
       </form>
       <a href="./index.html">Login</a>
     </div>

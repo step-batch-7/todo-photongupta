@@ -52,10 +52,17 @@ const addTask = function(event) {
     if (inputValue === '') return;
     const body = {todoId, item: inputValue};
     sendXmlHttpRequest('/addItem', 'POST', showTodoItems, {todoId}, body);
+    sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
+    document.querySelector('#addMoreTask').focus();
   }
 };
 
+const removeDeleteTodoPopUp = function() {
+  document.querySelector('.deleteTodoPopUp').style.transform = 'scale(0)';
+};
+
 const deleteTodo = function() {
+  removeDeleteTodoPopUp();
   const todoId = event.target.parentElement.id;
   const body = {todoId};
   sendXmlHttpRequest('/deleteTodo', 'POST', showTodoLists, null, body);
@@ -66,6 +73,7 @@ const deleteItem = function() {
   const todoId = document.querySelector('.todoDetail').getAttribute('id');
   const body = {itemId, todoId};
   sendXmlHttpRequest('/deleteItem', 'POST', showTodoItems, {todoId}, body);
+  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
 };
 
 const updateIsDoneStatus = function() {
@@ -74,6 +82,23 @@ const updateIsDoneStatus = function() {
   const body = {todoId, taskId};
   sendXmlHttpRequest('/updateStatus', 'POST', showTodoItems, {todoId}, body);
   sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
+};
+
+const logoutConfirmation = function() {
+  document.querySelector('.popUp').style.transform = 'scale(1)';
+  document.body.style = 'pointer-events: none';
+  document.querySelector('#button1').style = 'pointer-events: auto';
+  document.querySelector('#button2').style = 'pointer-events: auto';
+};
+
+const removePopUp = function() {
+  document.querySelector('.popUp').style.transform = 'scale(0)';
+  document.body.style = 'pointer-events: auto';
+};
+
+const logOut = function() {
+  removePopUp();
+  document.location = '/logout';
 };
 
 const main = function() {

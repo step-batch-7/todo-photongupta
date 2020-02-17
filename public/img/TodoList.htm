@@ -1,8 +1,9 @@
-
 <!-- saved from url=(0035)http://localhost:5000/showList.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <link rel="stylesheet" href="./TodoList_files/style.css">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="./TodoList_files/style.css" />
     <script src="./TodoList_files/xhr.js"></script>
     <title>TodoList</title>
   </head>
@@ -10,48 +11,87 @@
     <div class="header">
       <h4 class="headLine">Todos</h4>
       <div class="menuBar">
-        <input type="text" placeholder="search for task..." class="searchBar" oninput="search()">
+        <input
+          type="text"
+          placeholder="search for task..."
+          class="searchBar"
+          oninput="search()"
+        />
         <label class="switch">
-          <input type="checkbox" id="toggle" onclick="toggleSearchStatus()">
+          <input type="checkbox" id="toggle" onclick="toggleSearchStatus()" />
           <span class="slider"></span>
         </label>
 
-        <img src="./TodoList_files/plus.png" class="icon" onclick="showAddForm()">
-        <img src="./TodoList_files/home.png" class="icon" onclick="location.href=&#39;index.html&#39;">
-        <img src="./TodoList_files/menu.png" class="icon">
+        <img
+          src="./TodoList_files/plus.png"
+          class="icon"
+          onclick="showAddForm()"
+        />
+        <img
+          src="./TodoList_files/home.png"
+          class="icon"
+          onclick="location.href=&#39;index.html&#39;"
+        />
+        <img src="./TodoList_files/menu.png" class="icon" />
       </div>
     </div>
 
-    <hr>
+    <hr />
 
     <div class="todoHistory">
       <div class="todo">
         <h2>Your todos...</h2>
-        
-<div class="showTitle" id="1581247126209">
-<p class="title" contenteditable="true" onkeydown="editTitle()">sdfsdfs&nbsp;</p>
-<p class="">0/3&nbsp;</p>
-<img src="./TodoList_files/minus.png" class="close" onclick="deleteTodo()">
-<img src="./TodoList_files/edit.png" class="close" onclick="showTasks()">
 
-</div>
+        <div class="showTitle" id="1581247126209">
+          <p class="title" contenteditable="true" onkeydown="editTitle()">
+            sdfsdfs&nbsp;
+          </p>
+          <p class="">0/3&nbsp;</p>
+          <img
+            src="./TodoList_files/minus.png"
+            class="close"
+            onclick="deleteTodo()"
+          />
+          <img
+            src="./TodoList_files/edit.png"
+            class="close"
+            onclick="showTasks()"
+          />
+        </div>
 
-<div class="showTitle" id="1581247386428">
-<p class="title" contenteditable="true" onkeydown="editTitle()">sfsd&nbsp;</p>
-<p class="">0/3&nbsp;</p>
-<img src="./TodoList_files/minus.png" class="close" onclick="deleteTodo()">
-<img src="./TodoList_files/edit.png" class="close" onclick="showTasks()">
+        <div class="showTitle" id="1581247386428">
+          <p class="title" contenteditable="true" onkeydown="editTitle()">
+            sfsd&nbsp;
+          </p>
+          <p class="">0/3&nbsp;</p>
+          <img
+            src="./TodoList_files/minus.png"
+            class="close"
+            onclick="deleteTodo()"
+          />
+          <img
+            src="./TodoList_files/edit.png"
+            class="close"
+            onclick="showTasks()"
+          />
+        </div>
 
-</div>
-
-<div class="showTitle" id="1581247992580">
-<p class="title" contenteditable="true" onkeydown="editTitle()">dsf&nbsp;</p>
-<p class="">0/1&nbsp;</p>
-<img src="./TodoList_files/minus.png" class="close" onclick="deleteTodo()">
-<img src="./TodoList_files/edit.png" class="close" onclick="showTasks()">
-
-</div>
-
+        <div class="showTitle" id="1581247992580">
+          <p class="title" contenteditable="true" onkeydown="editTitle()">
+            dsf&nbsp;
+          </p>
+          <p class="">0/1&nbsp;</p>
+          <img
+            src="./TodoList_files/minus.png"
+            class="close"
+            onclick="deleteTodo()"
+          />
+          <img
+            src="./TodoList_files/edit.png"
+            class="close"
+            onclick="showTasks()"
+          />
+        </div>
       </div>
       <div class="right">
         <div class="todoDetail" style="display: none;"></div>
@@ -59,25 +99,52 @@
         <div class="form" style="transform: scaleZ(1);">
           <form method="POST">
             <p for="Add your todo">Add Your Todo</p>
-            <br>
-            <input type="text" name="title" required="" autocomplete="off" class="input" placeholder="add title here..."><br><br>
+            <br />
+            <input
+              type="text"
+              name="title"
+              required=""
+              autocomplete="off"
+              class="input"
+              placeholder="add title here..."
+            /><br /><br />
             <p for="todoItem">Tasks</p>
             <div class="items">
               <ul class="list">
                 <li>
-                  <input name="todoItem" class="input" autocomplete="off" required="" type="text" onkeydown="addInputBox(event)" placeholder="tasks..."><br><br>
+                  <input
+                    name="todoItem"
+                    class="input"
+                    autocomplete="off"
+                    required=""
+                    type="text"
+                    onkeydown="addInputBox(event)"
+                    placeholder="tasks..."
+                  /><br /><br />
                 </li>
               </ul>
-              <br>
+              <br />
             </div>
-            <img src="./TodoList_files/back.png" class="icon" onclick="location.href=&#39;showList.html&#39;">
-            <img src="./TodoList_files/plus.png" class="icon" onclick="addItems(event)" alt="addTodo">
-            <img src="./TodoList_files/minus.png" class="icon" onclick="removeItems()">
-            <input type="image" class="icon" src="./TodoList_files/tick.png">
+            <img
+              src="./TodoList_files/back.png"
+              class="icon"
+              onclick="location.href=&#39;showList.html&#39;"
+            />
+            <img
+              src="./TodoList_files/plus.png"
+              class="icon"
+              onclick="addItems(event)"
+              alt="addTodo"
+            />
+            <img
+              src="./TodoList_files/minus.png"
+              class="icon"
+              onclick="removeItems()"
+            />
+            <input type="image" class="icon" src="./TodoList_files/tick.png" />
           </form>
         </div>
       </div>
     </div>
-  
-
-</body></html>
+  </body>
+</html>

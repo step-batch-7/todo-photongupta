@@ -49,7 +49,6 @@
     "max-depth": "error",
     "no-mixed-operators": "error",
     "complexity": ["error", 4],
-    "no-extra-parens": "error",
     "no-template-curly-in-string": "error",
     "array-callback-return": "error",
     "default-param-last": "error",
@@ -60,12 +59,12 @@
     "no-proto": "error",
     "prefer-spread": "warn",
     "no-useless-call": "error",
-    "space-infix-ops": ["error", { "int32Hint": false }],
-    "no-multi-spaces":"error",
-    "block-spacing":"error",
-    "object-curly-spacing":"error",
-    "semi-spacing":"error",
-    "no-multiple-empty-lines":["error",{"max":1}],
-    "no-param-reassign" : "error"
+    "space-infix-ops": ["error", {"int32Hint": false}],
+    "no-multi-spaces": "error",
+    "block-spacing": "error",
+    "object-curly-spacing": "error",
+    "semi-spacing": "error",
+    "no-multiple-empty-lines": ["error", {"max": 1}],
+    "no-param-reassign": "error"
   }
 }
