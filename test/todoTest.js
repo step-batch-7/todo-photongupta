@@ -16,16 +16,6 @@ describe('Todo', function() {
     });
   });
 
-  describe('modifyItemList', function() {
-    it('should add the given items into the existing todo', function() {
-      const todo = new Todo({title: 'homeWork', id: 1});
-      assert.strictEqual(
-        todo.modifyItemList([{item: 'maths', isDone: false, id: 1}]),
-        1
-      );
-    });
-  });
-
   describe('toggleStatus', function() {
     it('should give true when the item is present', function() {
       const todo = new Todo({title: 'homeWork', id: 1});

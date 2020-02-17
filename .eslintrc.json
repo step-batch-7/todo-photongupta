@@ -66,5 +66,13 @@
     "semi-spacing": "error",
     "no-multiple-empty-lines": ["error", {"max": 1}],
     "no-param-reassign": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["test.*"],
+      "rules": {
+        "max-statements": "off"
+      }
+    }
+  ]
 }

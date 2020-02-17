@@ -15,7 +15,7 @@ const defaultPort = 5000;
 const main = function(port = defaultPort) {
   app.locals = {
     todoStore: TodoStore.initialize(todoLists, TODO_STORE, writeFileSync),
-    sessionStore: new SessionManager(),
+    sessionStore: new SessionManager(1000),
     userStore: UserStore.initialize(userCredentials, USER_STORE, writeFileSync)
   };
   app.listen(port);
