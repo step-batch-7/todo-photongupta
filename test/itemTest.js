@@ -20,4 +20,39 @@ describe('Item', function() {
       assert.isFalse(item.toggleStatus());
     });
   });
+
+  describe('toJSON', function() {
+    it('should give all the details of  particular item', function() {
+      const item = new Item('breakfast', 1, true);
+      assert.deepStrictEqual(item.toJSON(), {
+        id: 1,
+        isDone: true,
+        item: 'breakfast'
+      });
+    });
+  });
+
+  describe('load', function() {
+    it('should give the instance of item class', function() {
+      assert.instanceOf(
+        Item.load({
+          id: 1,
+          isDone: true,
+          item: 'breakfast'
+        }),
+        Item
+      );
+    });
+  });
+
+  describe('getStatus', function() {
+    it('should give all the details of  particular item', function() {
+      const item = new Item('breakfast', 1, true);
+      assert.deepStrictEqual(item.getStatus(), {
+        id: 1,
+        isDone: true,
+        item: 'breakfast'
+      });
+    });
+  });
 });

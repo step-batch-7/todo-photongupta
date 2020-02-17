@@ -68,7 +68,7 @@ describe('GET /', function() {
 
   it('should give all the todo when the url is /todoList.json', function(done) {
     request(app)
-      .get('/todoList.json')
+      .get('/todoLists')
       .set('Accept', '*/*')
       .set('Cookie', 'sessionId=1')
       .expect('Content-Type', /json/)
@@ -137,9 +137,9 @@ describe('POST ', function() {
       userStore: UserStore.initialize(userCredentials, '', writer)
     };
   });
-  it('should add the todo when the url /addTodo.html', function(done) {
+  it('should add the todo when the url /addTodo', function(done) {
     request(app)
-      .post('/home.html')
+      .post('/addTodo')
       .set('Accept', '*/*')
       .set('Cookie', 'sessionId=1')
       .send({title: 'go for break', todoItem: 'drink milk'})

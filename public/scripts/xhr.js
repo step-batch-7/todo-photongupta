@@ -20,7 +20,7 @@ const sendXmlHttpRequest = function(url, method, callback, args, body) {
 
 const showTasks = function() {
   const todoId = event.target.parentElement.id;
-  sendXmlHttpRequest('/todoList.json', 'GET', showTodoItems, {todoId});
+  sendXmlHttpRequest('/todoLists', 'GET', showTodoItems, {todoId});
 };
 
 const editTitle = function() {
@@ -52,7 +52,7 @@ const addTask = function(event) {
     if (inputValue === '') return;
     const body = {todoId, item: inputValue};
     sendXmlHttpRequest('/addItem', 'POST', showTodoItems, {todoId}, body);
-    sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
+    sendXmlHttpRequest('/todoLists', 'GET', showTodoLists, {todoId});
     document.querySelector('#addMoreTask').focus();
   }
 };
@@ -73,7 +73,7 @@ const deleteItem = function() {
   const todoId = document.querySelector('.todoDetail').getAttribute('id');
   const body = {itemId, todoId};
   sendXmlHttpRequest('/deleteItem', 'POST', showTodoItems, {todoId}, body);
-  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
+  sendXmlHttpRequest('/todoLists', 'GET', showTodoLists, {todoId});
 };
 
 const updateIsDoneStatus = function() {
@@ -81,7 +81,7 @@ const updateIsDoneStatus = function() {
   const todoId = document.querySelector('.todoDetail').id;
   const body = {todoId, taskId};
   sendXmlHttpRequest('/updateStatus', 'POST', showTodoItems, {todoId}, body);
-  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists, {todoId});
+  sendXmlHttpRequest('/todoLists', 'GET', showTodoLists, {todoId});
 };
 
 const logoutConfirmation = function() {
@@ -102,7 +102,7 @@ const logOut = function() {
 };
 
 const main = function() {
-  sendXmlHttpRequest('/todoList.json', 'GET', showTodoLists);
+  sendXmlHttpRequest('/todoLists', 'GET', showTodoLists);
 };
 
 window.onload = main;

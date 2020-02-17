@@ -57,4 +57,37 @@ describe('Todo', function() {
       assert.isUndefined(todo.removeItem(4));
     });
   });
+
+  describe('load', function() {
+    it('should give the instance of Todo class', function() {
+      assert.instanceOf(
+        Todo.load({title: 'school', id: 1, todoItems: []}),
+        Todo
+      );
+    });
+  });
+
+  describe('toJSON', function() {
+    it('should give the status of the todo', function() {
+      const todo = new Todo({title: 'homeWork', id: 1});
+      todo.addItems(['maths']);
+      assert.deepStrictEqual(todo.toJSON(), {
+        title: 'homeWork',
+        id: 1,
+        todoItems: [{item: 'maths', id: 1, isDone: false}]
+      });
+    });
+  });
+
+  describe('getStatus', function() {
+    it('should give the status of the todo', function() {
+      const todo = new Todo({title: 'homeWork', id: 1});
+      todo.addItems(['maths']);
+      assert.deepStrictEqual(todo.getStatus(), {
+        title: 'homeWork',
+        id: 1,
+        todoItems: [{item: 'maths', id: 1, isDone: false}]
+      });
+    });
+  });
 });
