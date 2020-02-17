@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 const request = require('supertest');
 const {fake} = require('sinon');
 const {app} = require('../lib/routes');
@@ -73,9 +74,34 @@ describe('GET /', function() {
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
+
+  it('should redirect to the index page when the sessionId is not present', function(done) {
+    request(app)
+      .get('/home.html')
+      .set('Accept', '*/*')
+      .expect('Location', '/')
+      .expect(302, done);
+  });
+
+  it('should redirect to the home page when the sessionId is present and url is /', function(done) {
+    request(app)
+      .get('/')
+      .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=1')
+      .expect('Location', '/home.html')
+      .expect(302, done);
+  });
+
+  it('should redirect to the login page if url is /logout', function(done) {
+    request(app)
+      .get('/logout')
+      .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=1')
+      .expect('Location', '/')
+      .expect(302, done);
+  });
 });
 
-// eslint-disable-next-line max-statements
 describe('POST ', function() {
   let writer;
   beforeEach(() => {
@@ -116,7 +142,7 @@ describe('POST ', function() {
       .post('/home.html')
       .set('Accept', '*/*')
       .set('Cookie', 'sessionId=1')
-      .send(JSON.stringify({title: 'go for break', todoItem: 'drink milk'}))
+      .send({title: 'go for break', todoItem: 'drink milk'})
       .expect('Location', '/home.html')
       .expect(302, done);
   });
@@ -125,7 +151,7 @@ describe('POST ', function() {
     request(app)
       .post('/addItem')
       .set('Cookie', 'sessionId=1')
-      .send(JSON.stringify({todoId: 123, item: 'drink juice'}))
+      .send({todoId: 123, item: 'drink juice'})
       .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
       .expect(200, done);
@@ -137,7 +163,7 @@ describe('POST ', function() {
       .set('Cookie', 'sessionId=1')
       .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
-      .send(JSON.stringify({todoId: 124, taskId: 1}))
+      .send({todoId: 124, taskId: 1})
       .expect(200, done);
   });
 
@@ -147,7 +173,7 @@ describe('POST ', function() {
       .set('Cookie', 'sessionId=1')
       .set('Content-Type', 'application/json')
       .set('Accept', '*/*')
-      .send(JSON.stringify({todoId: 124, taskId: 90}))
+      .send({todoId: 124, taskId: 90})
       .expect(200, done);
   });
 
@@ -157,7 +183,7 @@ describe('POST ', function() {
       .set('Accept', '*/*')
       .set('Cookie', 'sessionId=1')
       .set('Content-Type', 'application/json')
-      .send(JSON.stringify({todoId: 123}))
+      .send({todoId: 123})
       .expect(200, done);
   });
 
@@ -167,7 +193,7 @@ describe('POST ', function() {
       .set('Accept', '*/*')
       .set('Cookie', 'sessionId=1')
       .set('Content-Type', 'application/json')
-      .send(JSON.stringify({todoId: 124, itemId: 1}))
+      .send({todoId: 124, itemId: 1})
       .expect(200, done);
   });
 
@@ -177,7 +203,7 @@ describe('POST ', function() {
       .set('Accept', '*/*')
       .set('Cookie', 'sessionId=1')
       .set('Content-Type', 'application/json')
-      .send(JSON.stringify({todoId: 124, newTask: 'go to home', taskId: 2}))
+      .send({todoId: 124, newTask: 'go to home', taskId: 2})
       .expect(200, done);
   });
 
@@ -187,9 +213,10 @@ describe('POST ', function() {
       .set('Accept', '*/*')
       .set('Cookie', 'sessionId=1')
       .set('Content-Type', 'application/json')
-      .send(JSON.stringify({todoId: 124, newTitle: 'market'}))
+      .send({todoId: 124, newTitle: 'market'})
       .expect(200, done);
   });
+
   it('test  for post request with file not existing', function(done) {
     request(app)
       .post('/notFound')
@@ -202,7 +229,57 @@ describe('POST ', function() {
       .post('/editTitle')
       .set('Accept', '*/*')
       .set('Content-Type', 'application/json')
-      .send(JSON.stringify({id: 124, title: 'market'}))
+      .send({id: 124, title: 'market'})
       .expect(400, done);
+  });
+
+  it('should give true when user entered correct userName and password', function(done) {
+    request(app)
+      .post('/validateLogin')
+      .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=1')
+      .send({userName: 'anu', password: '123'})
+      .expect('true')
+      .expect(200, done);
+  });
+
+  it('should give false when user entered wrong userName or password', function(done) {
+    request(app)
+      .post('/validateLogin')
+      .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=1')
+      .send({userName: 'anu', password: '13'})
+      .expect('false')
+      .expect(200, done);
+  });
+
+  it('should redirect to the login page after registration', function(done) {
+    request(app)
+      .post('/registerUser')
+      .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=1')
+      .send({userName: 'anju', password: '13', email: 'a@1', phone: 2123453333})
+      .expect('Location', '/')
+      .expect(302, done);
+  });
+
+  it('should give true when the user name is already existing and url is /validateUserExists', function(done) {
+    request(app)
+      .post('/validateUserExists')
+      .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=1')
+      .send({userName: 'anu'})
+      .expect('true')
+      .expect(200, done);
+  });
+
+  it('should give false when the user name is not existing and url is /validateUserExists', function(done) {
+    request(app)
+      .post('/validateUserExists')
+      .set('Accept', '*/*')
+      .set('Cookie', 'sessionId=1')
+      .send({userName: 'John'})
+      .expect('false')
+      .expect(200, done);
   });
 });
