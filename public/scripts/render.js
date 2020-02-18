@@ -40,7 +40,7 @@ const addInputBox = function(event) {
   if (event.keyCode === 13 || event.target.alt === 'addTodo') {
     const input = `<input name="todoItem"  class="input" autocomplete="off" required type="text"
      onkeydown="addInputBox(event)" placeholder="tasks..." ></input ><br /><br />`;
-    appendChildTo(input, {parent: '.list', child: 'li'});
+    appendChildTo(input, {parent: '.list', child: 'p'});
   }
 };
 

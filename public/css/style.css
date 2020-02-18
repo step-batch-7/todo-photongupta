@@ -48,7 +48,7 @@ p {
 }
 
 .menuBar {
-  margin-left: 45vw;
+  margin-left: 35vw;
   margin-top: 10vh;
 }
 
@@ -72,7 +72,7 @@ p {
 }
 
 .showTitle:hover {
-  background-image: linear-gradient(rgb(250, 250, 250), rgb(87, 145, 104));
+  background-image: linear-gradient(rgb(250, 250, 250), rgb(54, 131, 9));
 }
 
 .title {
@@ -113,6 +113,7 @@ p {
 .list {
   height: 20vw;
   overflow: scroll;
+  font-weight: 200;
 }
 
 .item {
@@ -120,6 +121,7 @@ p {
   display: flex;
   box-shadow: 1px 1px 1px rgb(50, 50, 50);
   height: 3vw;
+  font-size: 18px;
   font-weight: 200;
 }
 
@@ -181,7 +183,8 @@ p:hover {
   height: 4vh;
   margin-top: 0.2%;
   text-align: center;
-  font-size: 1.4vw;
+  font-size: 18px;
+  font-weight: 200;
 }
 
 .addInput {
@@ -220,12 +223,13 @@ p:hover {
 button {
   height: 30px;
   width: 75px;
+  border-radius: 5px;
   background-image: linear-gradient(rgb(240, 240, 240), rgb(250, 250, 250));
 }
 
 button:hover {
   cursor: pointer;
-  background-image: linear-gradient(rgb(250, 250, 250), rgb(29, 165, 69));
+  background-image: linear-gradient(rgb(250, 250, 250), rgb(54, 131, 9));
 }
 
 .deleteTodoPopUp {
