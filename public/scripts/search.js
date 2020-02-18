@@ -1,6 +1,6 @@
 const showFirstMatchDetail = function(requiredTodo) {
   const todoId = requiredTodo[0].getAttribute('id');
-  sendXmlHttpRequest('/todoList.json', 'GET', showTodoItems, {todoId});
+  sendXmlHttpRequest('/todoLists', 'GET', showTodoItems, { todoId });
 };
 
 const filterTodo = function(todo) {
@@ -20,7 +20,7 @@ const hasSameId = function(todo) {
   return todo.id === +this.getAttribute('id');
 };
 
-const searchItem = function(todoList, {todos, input}) {
+const searchItem = function(todoList, { todos, input }) {
   const requiredTodo = todoList.filter(todo => {
     const requiredItems = todo.todoItems.filter(task =>
       task.item.toLowerCase().includes(input.toLowerCase())
@@ -44,7 +44,7 @@ const search = function() {
   if (isSearchForTodo()) {
     searchTodo(todos, input.value);
   } else {
-    sendXmlHttpRequest('/todoList.json', 'GET', searchItem, {
+    sendXmlHttpRequest('/todoLists', 'GET', searchItem, {
       todos,
       input: input.value
     });
