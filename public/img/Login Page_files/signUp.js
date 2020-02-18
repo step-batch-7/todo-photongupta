@@ -20,7 +20,7 @@ const sendXmlHttpRequest = function(url, method, callback, args, body) {
 
 const isValidUserName = function(isExists) {
   if (isExists) {
-    document.querySelector('#userName').innerHTML = 'user name already exists';
+    document.querySelector('#userName').style['visibility'] = 'visible';
     return (document.querySelector('form').onsubmit = () => false);
   }
   return (document.querySelector('form').onsubmit = () => true);
@@ -37,8 +37,7 @@ const isValidLogin = function(isValid) {
   if (isValid) {
     return (document.location = '/home.html');
   }
-  document.querySelector('#loginMsg').innerHTML =
-    'please enter correct username and password';
+  document.querySelector('#loginMsg').style['visibility'] = 'visible';
 };
 
 const validateLogin = function() {

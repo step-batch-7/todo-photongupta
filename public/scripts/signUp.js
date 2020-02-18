@@ -23,7 +23,7 @@ const isValidUserName = function(isExists) {
     document.querySelector('#userName').style['visibility'] = 'visible';
     return (document.querySelector('form').onsubmit = () => false);
   }
-  document.querySelector('#userName').innerHTML = '';
+  document.querySelector('#userName').style['visibility'] = 'hidden';
   return (document.querySelector('form').onsubmit = () => true);
 };
 
