@@ -5,6 +5,7 @@ body {
 }
 
 .form {
+  background-color: white;
   display: inline-block;
   margin-top: 20vh;
   width: 25vw;
@@ -64,4 +65,5 @@ button:hover {
 
 .errorMsg {
   color: red;
+  visibility: hidden;
 }
