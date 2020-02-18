@@ -23,6 +23,7 @@ const isValidUserName = function(isExists) {
     document.querySelector('#userName').innerHTML = 'user name already exists';
     return (document.querySelector('form').onsubmit = () => false);
   }
+  document.querySelector('#userName').innerHTML = '';
   return (document.querySelector('form').onsubmit = () => true);
 };
 
